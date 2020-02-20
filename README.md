@@ -9,4 +9,7 @@ New XP / Level System:
   - Every 5 Buildings also increases your XP per Click based on the buidling tier
 
 Fixed/Changed the building cost increase multiplier
- - is now based on on the base Cost the building rather than the current Cost
+  - is now based on on the base Cost the building rather than the current Cost
+ 
+Threshold to format number increased
+  - 999.999 -> 999.999.999.999
