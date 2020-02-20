@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] UICollector uICollector;
 
     float timePassed;
+    double formatThreshold = 999999999999;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,7 @@ public class UIManager : MonoBehaviour
         #region Coin Display Update
 
         double coins = System.Math.Round(uICollector.gameManager.GetCoins());
-        if (uICollector.gameManager.GetCoins() < 999999)
+        if (uICollector.gameManager.GetCoins() < formatThreshold)
         {
             uICollector.coinStatText.text = coins.ToString("N0") + " Coins";
         }
@@ -39,13 +40,13 @@ public class UIManager : MonoBehaviour
             uICollector.coinStatText.text = coins.ToString("e3") + " Coins";
         }
 
-        if(uICollector.gameManager.GetCoinsPerSecond() < 999999)
+        if(uICollector.gameManager.GetCoinsPerSecond() < formatThreshold)
         {
-            uICollector.cpsStatText.text = uICollector.gameManager.GetCoinsPerSecond().ToString("N0") + " / s";
+            uICollector.cpsStatText.text = uICollector.gameManager.GetCoinsPerSecond().ToString("N0") + " Coins/s";
         }
         else
         {
-            uICollector.cpsStatText.text = uICollector.gameManager.GetCoinsPerSecond().ToString("e3") + "/s";
+            uICollector.cpsStatText.text = uICollector.gameManager.GetCoinsPerSecond().ToString("e3") + " Coins/s";
         }
 
         
@@ -71,7 +72,7 @@ public class UIManager : MonoBehaviour
         string totalCoinsPerClick;
         string totalCoinsPerSecond;
 
-        if(uICollector.gameManager.GetTotalCoins() < 999999)
+        if(uICollector.gameManager.GetTotalCoins() < formatThreshold)
         {
             totalCoins = uICollector.gameManager.GetTotalCoins().ToString("N0");
         }
@@ -80,7 +81,7 @@ public class UIManager : MonoBehaviour
             totalCoins = uICollector.gameManager.GetTotalCoins().ToString("e3");
         }
 
-        if (uICollector.gameManager.GetTotalCoinsPerClick() < 999999)
+        if (uICollector.gameManager.GetTotalCoinsPerClick() < formatThreshold)
         {
             totalCoinsPerClick = uICollector.gameManager.GetTotalCoinsPerClick().ToString("N0");
         }
@@ -89,7 +90,7 @@ public class UIManager : MonoBehaviour
             totalCoinsPerClick = uICollector.gameManager.GetTotalCoinsPerClick().ToString("e3");
         }
 
-        if (uICollector.gameManager.GetTotalCoinsPerSecond() < 999999)
+        if (uICollector.gameManager.GetTotalCoinsPerSecond() < formatThreshold)
         {
             totalCoinsPerSecond = uICollector.gameManager.GetTotalCoinsPerSecond().ToString("N0");
         }
@@ -123,7 +124,28 @@ public class UIManager : MonoBehaviour
 
         #endregion
 
+        #region XP Bar Behaviour Update
 
+        if(uICollector.gameManager.GetLevel() < formatThreshold)
+        {
+            uICollector.levelText.text = string.Format("Lvl: " + uICollector.gameManager.GetLevel().ToString("N0") + "\n" + uICollector.gameManager.GetCurrentXP().ToString("N0")
+                + "/" + uICollector.gameManager.GetMaxXP().ToString("N0"));
+        }
+        else
+        {
+            uICollector.levelText.text = string.Format("Lvl: " + uICollector.gameManager.GetLevel().ToString("e3") + "\n" + uICollector.gameManager.GetCurrentXP().ToString("e3")
+                + "/" + uICollector.gameManager.GetMaxXP().ToString("e3"));
+        }
+
+        uICollector.xpBar.GetComponent<Slider>().maxValue = (float)uICollector.gameManager.GetMaxXP();
+        uICollector.xpBar.GetComponent<Slider>().value = (float)uICollector.gameManager.GetCurrentXP();
+
+        if(uICollector.gameManager.GetCurrentXP() >= uICollector.gameManager.GetMaxXP())
+        {
+            uICollector.gameManager.LevelUp();
+        }
+
+        #endregion
     }
 
     #region Upgrade Related Stuff
@@ -156,7 +178,7 @@ public class UIManager : MonoBehaviour
                 upgrade.GetComponent<UpgradeButton>().SetCost(uICollector.upgradeManager.GetUpgradeList()[i].GetCost());
                 upgrade.GetComponent<UpgradeButton>().SetAmount((int)uICollector.upgradeManager.GetUpgradeList()[i].GetAmount());
 
-                if (uICollector.upgradeManager.GetUpgradeList()[i].GetCost() < 999999)
+                if (uICollector.upgradeManager.GetUpgradeList()[i].GetCost() < formatThreshold)
                 {
                     uptext.text = string.Format(uICollector.upgradeManager.GetUpgradeList()[i].GetName() + "\n" + 
                         uICollector.upgradeManager.GetUpgradeList()[i].GetCost().ToString("N0") + " Coins") + "\n" + 
@@ -197,6 +219,7 @@ public class UIManager : MonoBehaviour
             if (amountCalc == 0)
             {
                 upgrade.IncreaseIncome(50);
+                uICollector.gameManager.IncreaseXPPerClick(upgrade.GetTier());
             }
 
             if (upgrade.GetIncomeType() == IncomeType.CPC)
@@ -212,7 +235,7 @@ public class UIManager : MonoBehaviour
 
             upgrade.SetAmount(upgrade.GetAmount() + 1);
 
-            upgrade.SetCost(System.Math.Round(upgrade.GetCost() * System.Math.Pow(1.15f, upgrade.GetAmount())));
+            upgrade.SetCost(upgrade.GetBaseCost() * System.Math.Pow(1.15f, upgrade.GetAmount()));
 
             uICollector.upgradeManager.GetUpgradeList().RemoveAt(index);
             uICollector.upgradeManager.GetUpgradeList().Insert(index, upgrade);
@@ -232,49 +255,64 @@ public class UIManager : MonoBehaviour
         text.transform.SetParent(parent);
         Text clickText = text.GetComponent<Text>();
 
+        GameObject xpText = Instantiate(uICollector.clickText, new Vector2(position.x, position.y), Quaternion.identity);
+        xpText.transform.SetParent(parent);
+        Text clickXPText = xpText.GetComponent<Text>();
+
         if (autoClick)
         {
 
             uICollector.gameManager.IncreaseCoinsPerSecond();
 
-            if(uICollector.gameManager.GetCoinsPerSecond() < 999999)
+            if(uICollector.gameManager.GetCoinsPerSecond() < formatThreshold)
             {
-                clickText.text = "+" + uICollector.gameManager.GetCoinsPerSecond().ToString();
+                clickText.text = "+" + string.Format(uICollector.gameManager.GetCoinsPerSecond().ToString("N0") + " Coins");
             }
             else
             {
-                clickText.text = "+" + uICollector.gameManager.GetCoinsPerSecond().ToString("e3");
+                clickText.text = "+" + string.Format(uICollector.gameManager.GetCoinsPerSecond().ToString("e3") + " Coins");
             }
             
         }
         else
         {
-
-
             uICollector.gameManager.IncreaseCoins();
+            uICollector.gameManager.XPClick();
 
-            if(uICollector.gameManager.GetCoinsPerClick() < 999999)
+            if(uICollector.gameManager.GetCoinsPerClick() < formatThreshold)
             {
-                clickText.text = "+" + uICollector.gameManager.GetCoinsPerClick().ToString();
+                clickText.text = "+" + string.Format(uICollector.gameManager.GetCoinsPerClick().ToString("N0") + " Coins");
             }
             else
             {
-                clickText.text = "+" + uICollector.gameManager.GetCoinsPerClick().ToString("e3");
+                clickText.text = "+" + string.Format(uICollector.gameManager.GetCoinsPerClick().ToString("e3") + " Coins");
             }
-            
 
+            
+            if (uICollector.gameManager.GetXPPerClick() < formatThreshold)
+            {
+                clickXPText.text = string.Format("+" + uICollector.gameManager.GetXPPerClick().ToString("N0") + " XP");
+            }
+            else
+            {
+                clickXPText.text = string.Format("+" + uICollector.gameManager.GetXPPerClick().ToString("e3") + " XP");
+            }
         }
 
         while(clickText.color.a > 0.0f)
         {
-            text.transform.position = new Vector2(text.transform.position.x, text.transform.position.y + 50f * Time.deltaTime);
+            text.transform.position = new Vector2(text.transform.position.x + 25f * Time.deltaTime, text.transform.position.y + 50f * Time.deltaTime);
             clickText.color = new Color(clickText.color.r, clickText.color.g, clickText.color.b, clickText.color.a - (Time.deltaTime));
+
+            xpText.transform.position = new Vector2(xpText.transform.position.x - 25f * Time.deltaTime, xpText.transform.position.y + 50f * Time.deltaTime);
+            clickXPText.color = new Color(clickXPText.color.r, clickXPText.color.g, clickXPText.color.b, clickXPText.color.a - (Time.deltaTime));
 
             yield return null;
         }
 
 
         Destroy(text);
+        Destroy(xpText);
 
     }
 

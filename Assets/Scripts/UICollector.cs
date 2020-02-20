@@ -15,6 +15,11 @@ public class UICollector : MonoBehaviour
     public Text cpsStatText;
     public Button clickButton;
 
+    //XP Bar Stuff
+    [Header("XP Bar")]
+    public GameObject xpBar;
+    public Text levelText;
+
     //Information Panel Stuff
     [Header("Information Panel Stuff")]
     public Button infoButton;

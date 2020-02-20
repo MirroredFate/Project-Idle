@@ -34,7 +34,8 @@ public class UpgradeManager : MonoBehaviour
             10,                 //Cost
             IncomeType.CPS,     //Type
             0,                  //Coins per Click
-            2);                 //Coins per Second
+            2,                  //Coins Per Second
+            1);                 //Tier
         upgrades.Add(farm);
         //---------------------------------------------------------------------------
         Upgrade inn = new Upgrade(
@@ -43,7 +44,8 @@ public class UpgradeManager : MonoBehaviour
             125,                //Cost
             IncomeType.CPS,     //Type
             0,                  //Coins per Click
-            6);                 //Coins per Second
+            6,                  //Coins per Second    
+            2);                 //Tier
         upgrades.Add(inn);
         //---------------------------------------------------------------------------
         Upgrade blacksmith = new Upgrade(
@@ -52,7 +54,8 @@ public class UpgradeManager : MonoBehaviour
             600,                //Cost
             IncomeType.CPS,     //Type
             0,                  //Coins per Click
-            20);                //Coins per Second
+            20,                 //Coins per Second
+            3);                 //Tier
         upgrades.Add(blacksmith);
         //---------------------------------------------------------------------------
         Upgrade warriorBarracks = new Upgrade(
@@ -61,7 +64,8 @@ public class UpgradeManager : MonoBehaviour
             1800,                           //Cost
             IncomeType.CPS,                 //Type
             0,                              //Coins per Click
-            65);                            //Coins per Second
+            65,                             //Coins per Second
+            4);                             //Tier
         upgrades.Add(warriorBarracks);
         //---------------------------------------------------------------------------
         Upgrade knightsJousts = new Upgrade(
@@ -70,7 +74,8 @@ public class UpgradeManager : MonoBehaviour
            5600,                            //Cost
            IncomeType.CPS,                  //Type
            0,                               //Coins per Click
-           200);                            //Coins per Second
+           200,                             //Coins Per Second
+           5);                              //Tier
         upgrades.Add(knightsJousts);
         //---------------------------------------------------------------------------
         Upgrade wizardTower = new Upgrade(
@@ -79,7 +84,8 @@ public class UpgradeManager : MonoBehaviour
            38000,                           //Cost
            IncomeType.CPS,                  //Type
            0,                               //Coins per Click
-           650);                            //Coins per Second
+           650,                             //Coins per Second
+           6);                              //Tier
         upgrades.Add(wizardTower);
         //---------------------------------------------------------------------------
         Upgrade cathedral = new Upgrade(
@@ -88,16 +94,18 @@ public class UpgradeManager : MonoBehaviour
            442000,                          //Cost
            IncomeType.CPS,                  //Type
            0,                               //Coins per Click
-           2000);                           //Coins per Second
+           2000,                            //Coins per Second
+           7);                              //Tier
         upgrades.Add(cathedral);
         //---------------------------------------------------------------------------
         Upgrade citadel = new Upgrade(
-           "Citadel",              //Name
-           7,                              //ID
-           7300000,                   //Cost
-           IncomeType.CPS,                 //Type
-           0,                              //Coins per Click
-           8500);                       //Coins per Second
+           "Citadel",                       //Name
+           7,                               //ID
+           7300000,                         //Cost
+           IncomeType.CPS,                  //Type
+           0,                               //Coins per Click
+           8500,                            //Coins Per Second
+           8);                              //Tier
         upgrades.Add(citadel);
         //---------------------------------------------------------------------------
         Upgrade royalCastle = new Upgrade(
@@ -106,7 +114,8 @@ public class UpgradeManager : MonoBehaviour
            145000000,                   //Cost
            IncomeType.CPS,                 //Type
            0,                              //Coins per Click
-           100000);                       //Coins per Second
+           100000,                         //Coins Per Second
+           9);                       //Tier
         upgrades.Add(royalCastle);
         //---------------------------------------------------------------------------
         Upgrade heavensGate = new Upgrade(
@@ -115,7 +124,8 @@ public class UpgradeManager : MonoBehaviour
            3200000000,                   //Cost
            IncomeType.CPS,                 //Type
            0,                              //Coins per Click
-           1200000);                       //Coins per Second
+           1200000,                     //Coins Per Second
+           10);                       //Tier
         upgrades.Add(heavensGate);
         //---------------------------------------------------------------------------
         Upgrade hall = new Upgrade(
@@ -124,7 +134,8 @@ public class UpgradeManager : MonoBehaviour
            200000000000,                   //Cost
            IncomeType.CPS,                 //Type
            0,                              //Coins per Click
-           2500000);                       //Coins per Second
+           2500000,                     //Coins Per Second
+           11);                       //Tier
         upgrades.Add(hall);
         //---------------------------------------------------------------------------
 

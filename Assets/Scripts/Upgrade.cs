@@ -10,22 +10,29 @@ public class Upgrade
     int id;
 
     double amount;
-    double cost;
+    double baseCost;
+    double currentCost;
+
     IncomeType incomeType;
 
     double coinsPerClick;
     double coinsPerSecond;
 
+    double tier;
+
     bool active;
 
-    public Upgrade(string name, int id, double cost, IncomeType type, double coinsPerClick, double coinsPerSecond)
+    public Upgrade(string name, int id, double cost, IncomeType type, double coinsPerClick, double coinsPerSecond, double tier)
     {
         this.name = name;
         this.id = id;
-        this.cost = cost;
+        this.baseCost = cost;
         incomeType = type;
         this.coinsPerClick = coinsPerClick;
         this.coinsPerSecond = coinsPerSecond;
+        this.tier = tier;
+
+        currentCost = baseCost;
 
         amount = 0;
         active = false;
@@ -46,7 +53,8 @@ public class Upgrade
 
     public void SetCost(double amount)
     {
-        cost = amount;
+        currentCost = baseCost;
+        currentCost = amount;
     }
 
     public void SetCoinsPerClick(double amount)
@@ -81,7 +89,7 @@ public class Upgrade
 
     public double GetCost()
     {
-        return cost;
+        return currentCost;
     }
 
     public double GetCoinsPerClick()
@@ -107,6 +115,16 @@ public class Upgrade
     public IncomeType GetIncomeType()
     {
         return incomeType;
+    }
+
+    public double GetTier()
+    {
+        return tier;
+    }
+
+    public double GetBaseCost()
+    {
+        return baseCost;
     }
 
     #endregion

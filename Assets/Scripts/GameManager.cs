@@ -6,6 +6,13 @@ public class GameManager : MonoBehaviour
 {
     public bool admin = false;
 
+    double level = 1;
+    double maxXP = 10;
+
+    double baseMaxXP;
+    double xp = 0;
+    double xpPerClick = 1;
+
     double coins;
     double coinsPerClick = 1;
     double coinsPerSecond = 0;
@@ -20,6 +27,8 @@ public class GameManager : MonoBehaviour
         {
             coinsPerClick = 1e100;
         }
+
+        baseMaxXP = maxXP;
     }
 
     // Update is called once per frame
@@ -60,6 +69,26 @@ public class GameManager : MonoBehaviour
         return coinsTotalperSecond;
     }
 
+    public double GetLevel()
+    {
+        return level;
+    }
+
+    public double GetMaxXP()
+    {
+        return maxXP;
+    }
+
+    public double GetCurrentXP()
+    {
+        return xp;
+    }
+
+    public double GetXPPerClick()
+    {
+        return xpPerClick;
+    }
+
     #endregion
 
 
@@ -88,5 +117,30 @@ public class GameManager : MonoBehaviour
     {
         coins += coinsPerClick;
         coinsTotalperClick += coinsPerClick;
+    }
+
+    public void LevelUp()
+    {
+        level++;
+        if(xp > maxXP)
+        {
+            xp -= maxXP;
+        }
+        else
+        {
+             xp = 0;
+        }
+        maxXP += baseMaxXP * System.Math.Pow(1.15f, level);
+        coinsPerClick += System.Math.Pow(1.15f, level);
+    }
+
+    public void XPClick()
+    {
+        xp += xpPerClick;
+    }
+
+    public void IncreaseXPPerClick(double upgradeTier)
+    {
+        xpPerClick += System.Math.Pow(1.15f, upgradeTier);
     }
 }
