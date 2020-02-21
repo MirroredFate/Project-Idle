@@ -5,6 +5,7 @@ Change-Log:
 Version 0.0.4
 
 New XP / Level System:
+  - You gain XP by clicking
   - Every Level Increases your Coins Per Click
   - Every 5 Buildings also increases your XP per Click based on the buidling tier
 
