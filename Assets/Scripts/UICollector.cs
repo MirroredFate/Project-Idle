@@ -5,10 +5,6 @@ using UnityEngine.UI;
 
 public class UICollector : MonoBehaviour
 {
-    //GameManager
-    [Header("Game Manager")]
-    public GameManager gameManager;
-
     //General Click Stuff
     [Header("General Click Stuff")]
     public Text coinStatText;
