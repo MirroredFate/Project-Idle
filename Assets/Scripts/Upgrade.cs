@@ -17,6 +17,7 @@ public class Upgrade
 
     double coinsPerClick;
     double coinsPerSecond;
+    double currentIncome;
 
     double tier;
 
@@ -127,17 +128,32 @@ public class Upgrade
         return baseCost;
     }
 
+    public double GetCurrentIncome()
+    {
+        if(amount == 0)
+        {
+            currentIncome = (amount + 1) * coinsPerSecond;
+        }
+        else if(amount > 0)
+        {
+            currentIncome = amount * coinsPerSecond;
+        }
+
+        return currentIncome; 
+    }
+
     #endregion
 
-    public void IncreaseIncome(int percentage)
+    public void IncreaseIncome(float percentage)
     {
         if (incomeType == IncomeType.CPC)
         {
-            coinsPerClick = System.Math.Round(coinsPerClick * (1 + percentage * 0.01f));
+            coinsPerClick = System.Math.Round(coinsPerClick * (1f + percentage * 0.01f));
         }
         else if (incomeType == IncomeType.CPS)
         {
-            coinsPerSecond = System.Math.Round(coinsPerSecond * (1 + (percentage * 0.01f)));
+            coinsPerSecond = coinsPerSecond * (1f + (percentage * 0.01f));
+            GameManager.Instance.AddToTotalIncome(id, currentIncome * (1f + (percentage * 0.01f)));
         }
     }
 

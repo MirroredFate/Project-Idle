@@ -22,6 +22,18 @@ public class GameManager : MonoBehaviour
     double coinsTotalperSecond;
     double coinsTotalperClick;
 
+    double totalFarmIncome;
+    double totalInnIncome;
+    double totalBlacksmithIncome;
+    double totalBarracksIncome;
+    double totalJoustsIncome;
+    double totalTowerIncome;
+    double totalCathedralIncome;
+    double totalCitadelIncome;
+    double totalCastleIncome;
+    double totalGateIncome;
+    double totalHallIncome;
+
 
     private void Awake()
     {
@@ -118,9 +130,48 @@ public class GameManager : MonoBehaviour
         coinsPerClick += amount;
     }
 
-    public void IncreaseCPS(double amount)
+
+
+    public void AddToTotalIncome(int id, double income)
     {
-        coinsPerSecond += amount;
+        switch (id)
+        {
+            case 0: totalFarmIncome = income;
+                break;
+
+            case 1: totalInnIncome = income;
+                break;
+
+            case 2: totalBlacksmithIncome = income;
+                break;
+
+            case 3: totalBarracksIncome = income;
+                break;
+
+            case 4: totalJoustsIncome = income;
+                break;
+
+            case 5: totalTowerIncome = income;
+                break;
+
+            case 6: totalCathedralIncome = income;
+                break;
+
+            case 7: totalCitadelIncome = income;
+                break;
+
+            case 8: totalCastleIncome = income;
+                break;
+
+            case 9: totalGateIncome = income;
+                break;
+
+            case 10: totalHallIncome = income;
+                break;
+        }
+
+        coinsPerSecond = totalFarmIncome + totalInnIncome + totalBlacksmithIncome + totalBarracksIncome + totalJoustsIncome + totalTowerIncome + totalCathedralIncome + totalCitadelIncome + totalCastleIncome +
+            totalGateIncome + totalHallIncome;
     }
 
     public void RemoveCoins(double amount)
@@ -154,8 +205,10 @@ public class GameManager : MonoBehaviour
         xp += xpPerClick;
     }
 
-    public void IncreaseXPPerClick(double upgradeTier)
+    public void IncreaseXPPerClick(double upgradeTier, float increase_Percent)
     {
-        xpPerClick += System.Math.Pow(1.15f, upgradeTier);
+        float increaseAmount = 1f + (increase_Percent / 100f);
+
+        xpPerClick += System.Math.Pow(increaseAmount, upgradeTier);
     }
 }

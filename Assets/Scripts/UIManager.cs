@@ -117,9 +117,6 @@ public class UIManager : MonoBehaviour
             {
                 button.interactable = false;
             }
-
-            
-
         }
 
         #endregion
@@ -214,12 +211,15 @@ public class UIManager : MonoBehaviour
             int index = uICollector.upgradeManager.GetUpgradeList().IndexOf(upgrade);
 
             double amountCalc = (upgrade.GetAmount()+1) % 5;
-            Debug.Log(amountCalc);
+            upgrade.SetAmount(upgrade.GetAmount() + 1);
+            Debug.Log("Current Income for " + upgrade.GetName() + " is " + upgrade.GetCurrentIncome());
+            Debug.Log("Current Amount: " + amountCalc);
 
             if (amountCalc == 0)
             {
-                upgrade.IncreaseIncome(50);
-                GameManager.Instance.IncreaseXPPerClick(upgrade.GetTier());
+                upgrade.IncreaseIncome(15f);
+                Debug.Log("Bonus, Income now at: " + upgrade.GetCurrentIncome());
+                GameManager.Instance.IncreaseXPPerClick(upgrade.GetTier(), 25);
             }
 
             if (upgrade.GetIncomeType() == IncomeType.CPC)
@@ -228,21 +228,17 @@ public class UIManager : MonoBehaviour
             }
             else
             {
-                GameManager.Instance.IncreaseCPS(upgrade.GetCoinsPerSecond());
+                GameManager.Instance.AddToTotalIncome(upgrade.GetID(),upgrade.GetCurrentIncome());
             }
 
             upgrade.SetActive(true);
-
-            upgrade.SetAmount(upgrade.GetAmount() + 1);
 
             upgrade.SetCost(upgrade.GetBaseCost() * System.Math.Pow(1.15f, upgrade.GetAmount()));
 
             uICollector.upgradeManager.GetUpgradeList().RemoveAt(index);
             uICollector.upgradeManager.GetUpgradeList().Insert(index, upgrade);
             InstantiateUpgradeButtons();
-
         }
-
     }
 
     #endregion
