@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum IncomeType { CPS, CPC}
 
-public class Upgrade : MonoBehaviour
+public class Upgrade
 {
     string upgradeName;
     int id;

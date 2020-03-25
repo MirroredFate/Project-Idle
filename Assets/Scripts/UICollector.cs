@@ -40,6 +40,7 @@ public class UICollector : MonoBehaviour
     public GameObject upgradePanel;
     public Button upgradeButtonPrefab;
     public List<Button> upgradeButtonList;
+    public Button amountButton;
 
     
 
