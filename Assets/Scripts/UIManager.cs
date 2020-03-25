@@ -263,7 +263,7 @@ public class UIManager : MonoBehaviour
                         upgrade.IncreaseIncome(15f);
                         GameManager.Instance.IncreaseXPPerClick(upgrade.GetTier(), 25);
                     }
-                    tempUpgrade.SetCost(tempUpgrade.GetBaseCost() * System.Math.Pow(1.15f, tempUpgrade.GetAmount()));
+                    //tempUpgrade.SetCost(tempUpgrade.GetBaseCost() * System.Math.Pow(1.15f, tempUpgrade.GetAmount()));
                 }
 
                 //upgrade.SetCost(tempUpgrade.GetCost());
