@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
 {
+    public static UpgradeManager instance { get; private set; }
+
     private List<Upgrade> upgrades;
 
 
     // Start is called before the first frame update
     private void Awake()
     {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         upgrades = new List<Upgrade>();
     }
 
@@ -141,10 +152,21 @@ public class UpgradeManager : MonoBehaviour
 
     }
 
-
-
     public List<Upgrade> GetUpgradeList()
     {
         return upgrades;
+    }
+
+    public Upgrade GetUpgrade(int id)
+    {
+        if(upgrades[id] == null)
+        {
+            return upgrades[id];
+
+        }
+        else
+        {
+            return null;
+        }
     }
 }

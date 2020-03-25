@@ -37,7 +37,6 @@ public class UICollector : MonoBehaviour
 
     //Upgrade Stuff
     [Header("Upgrade Stuff")]
-    public UpgradeManager upgradeManager;
     public GameObject upgradePanel;
     public Button upgradeButtonPrefab;
     public List<Button> upgradeButtonList;

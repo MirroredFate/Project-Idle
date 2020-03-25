@@ -4,9 +4,9 @@ using UnityEngine;
 
 public enum IncomeType { CPS, CPC}
 
-public class Upgrade
+public class Upgrade : MonoBehaviour
 {
-    string name;
+    string upgradeName;
     int id;
 
     double amount;
@@ -25,7 +25,7 @@ public class Upgrade
 
     public Upgrade(string name, int id, double cost, IncomeType type, double coinsPerClick, double coinsPerSecond, double tier)
     {
-        this.name = name;
+        this.upgradeName = name;
         this.id = id;
         this.baseCost = cost;
         incomeType = type;
@@ -44,7 +44,7 @@ public class Upgrade
 
     public void SetName(string name)
     {
-        this.name = name;
+        this.upgradeName = name;
     }
 
     public void SetAmount(double amount)
@@ -80,7 +80,7 @@ public class Upgrade
 
     public string GetName()
     {
-        return name;
+        return upgradeName;
     }
 
     public double GetAmount()
