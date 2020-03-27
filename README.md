@@ -2,6 +2,9 @@
 
 Change-Log:
 
+Version 0.0.7
+ - Added a new button to buy certain amounts of a Building instead of just buying one at a time.
+
 Version 0.0.4
 
 New XP / Level System:
