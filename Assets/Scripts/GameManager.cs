@@ -6,33 +6,37 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    [Header("Admin")]
     public bool admin = false;
 
-    double level = 1;
-    double maxXP = 10;
+    [Header("XP / Level stuff")]
+    [SerializeField]double level = 1;
+    [SerializeField] double maxXP = 10;
 
-    double baseMaxXP;
-    double xp = 0;
-    double xpPerClick = 1;
+    [SerializeField] double baseMaxXP;
+    [SerializeField] double xp = 0;
+    [SerializeField] double xpPerClick = 1;
 
-    double coins;
-    double coinsPerClick = 1;
-    double coinsPerSecond = 0;
+    [Header("Coins")]
+    [SerializeField] double coins;
+    [SerializeField] double coinsPerClick = 1;
+    [SerializeField] double coinsPerSecond = 0;
 
-    double coinsTotalperSecond;
-    double coinsTotalperClick;
+    [SerializeField] double coinsTotalperSecond;
+    [SerializeField] double coinsTotalperClick;
 
-    double totalFarmIncome;
-    double totalInnIncome;
-    double totalBlacksmithIncome;
-    double totalBarracksIncome;
-    double totalJoustsIncome;
-    double totalTowerIncome;
-    double totalCathedralIncome;
-    double totalCitadelIncome;
-    double totalCastleIncome;
-    double totalGateIncome;
-    double totalHallIncome;
+    [Header("Total Income of Buildings")]
+    [SerializeField] double totalFarmIncome;
+    [SerializeField] double totalInnIncome;
+    [SerializeField] double totalBlacksmithIncome;
+    [SerializeField] double totalBarracksIncome;
+    [SerializeField] double totalJoustsIncome;
+    [SerializeField] double totalTowerIncome;
+    [SerializeField] double totalCathedralIncome;
+    [SerializeField] double totalCitadelIncome;
+    [SerializeField] double totalCastleIncome;
+    [SerializeField] double totalGateIncome;
+    [SerializeField] double totalHallIncome;
 
 
     private void Awake()

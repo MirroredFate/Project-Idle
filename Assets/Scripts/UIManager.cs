@@ -309,13 +309,13 @@ public class UIManager : MonoBehaviour
                     if (CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()) < formatThreshold)
                     {
                         uptext.text = string.Format(upgrade.GetName() + "\n" +
-                            CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()).ToString("N0") + " Coins") + "\n" +
+                           uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmountText() + " " + CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()).ToString("N0") + " Coins") + "\n" +
                             upgrade.GetAmount().ToString();
                     }
                     else
                     {
                         uptext.text = string.Format(upgrade.GetName() + "\n" +
-                            CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()).ToString("e3") + " Coins") + "\n" +
+                            uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmountText() + " " + CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()).ToString("e3") + " Coins") + "\n" +
                             upgrade.GetAmount().ToString();
                     }
 
