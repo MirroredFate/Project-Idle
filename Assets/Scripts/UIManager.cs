@@ -101,7 +101,7 @@ public class UIManager : MonoBehaviour
         }
 
 
-        uICollector.infoNumbers.text = string.Format(totalCoins + "\n\n" + totalCoinsPerClick + "\n\n" + totalCoinsPerSecond);
+        uICollector.infoNumbers.text = string.Format(totalCoins + "\n\n" + totalCoinsPerClick + "\n\n" + totalCoinsPerSecond + "\n\n\n" + GameManager.Instance.GetClicksDone());
 
 
         #endregion
@@ -144,13 +144,11 @@ public class UIManager : MonoBehaviour
 
         if (GameManager.Instance.GetLevel() < formatThreshold)
         {
-            uICollector.levelText.text = string.Format("Lvl: " + GameManager.Instance.GetLevel().ToString("N0") + "\n" + GameManager.Instance.GetCurrentXP().ToString("N0")
-                + "/" + GameManager.Instance.GetMaxXP().ToString("N0"));
+            uICollector.levelText.text = string.Format("Lvl: " + GameManager.Instance.GetLevel().ToString("N0"));
         }
         else
         {
-            uICollector.levelText.text = string.Format("Lvl: " + GameManager.Instance.GetLevel().ToString("e3") + "\n" + GameManager.Instance.GetCurrentXP().ToString("e3")
-                + "/" + GameManager.Instance.GetMaxXP().ToString("e3"));
+            uICollector.levelText.text = string.Format("Lvl: " + GameManager.Instance.GetLevel().ToString("e3"));
         }
 
         uICollector.xpBar.GetComponent<Slider>().maxValue = (float)GameManager.Instance.GetMaxXP();
@@ -391,6 +389,7 @@ public class UIManager : MonoBehaviour
         {
             GameManager.Instance.IncreaseCoins();
             GameManager.Instance.XPClick();
+            GameManager.Instance.IncreaseClicksDone();
 
             if(GameManager.Instance.GetCoinsPerClick() < formatThreshold)
             {

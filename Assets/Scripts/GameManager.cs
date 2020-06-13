@@ -38,6 +38,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] double totalGateIncome;
     [SerializeField] double totalHallIncome;
 
+    [Header("Random Info Stuff")]
+    [SerializeField] double clicksDone;
+
 
     private void Awake()
     {
@@ -120,6 +123,11 @@ public class GameManager : MonoBehaviour
         return xpPerClick;
     }
 
+    public double GetClicksDone()
+    {
+        return clicksDone;
+    }
+
     #endregion
 
 
@@ -134,6 +142,10 @@ public class GameManager : MonoBehaviour
         coinsPerClick += amount;
     }
 
+    public void IncreaseClicksDone()
+    {
+        clicksDone++;
+    }
 
 
     public void AddToTotalIncome(int id, double income)
@@ -201,7 +213,8 @@ public class GameManager : MonoBehaviour
              xp = 0;
         }
         maxXP += baseMaxXP * System.Math.Pow(1.15f, level);
-        coinsPerClick += System.Math.Pow(1.15f, level);
+        //coinsPerClick += System.Math.Pow(1.15f, level*0.5f);
+        IncreaseCoinsPerClick(level * 0.5, 15);
     }
 
     public void XPClick()
@@ -215,4 +228,13 @@ public class GameManager : MonoBehaviour
 
         xpPerClick += System.Math.Pow(increaseAmount, upgradeTier);
     }
+
+    public void IncreaseCoinsPerClick(double basedOn, float increase_Percent)
+    {
+        float increaseAmount = 1f + (increase_Percent / 100f);
+
+        coinsPerClick += System.Math.Pow(increaseAmount, basedOn);
+    }
+
+
 }
