@@ -462,7 +462,7 @@ public class UIManager : MonoBehaviour
     {
         Upgrade tempUpgrade = new Upgrade("temp", -1, upgrade.GetCost(), IncomeType.CPS,0, 0, 99);
         double totalCost = 0;
-        for (int i = 0; i < amount-1; i++)
+        for (int i = 0; i <= amount-1; i++)
         {
             totalCost += tempUpgrade.GetCost();
             tempUpgrade.SetAmount(tempUpgrade.GetAmount() + 1);

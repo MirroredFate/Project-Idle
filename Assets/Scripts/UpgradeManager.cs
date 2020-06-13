@@ -45,7 +45,7 @@ public class UpgradeManager : MonoBehaviour
             10,                 //Cost
             IncomeType.CPS,     //Type
             0,                  //Coins per Click
-            2,                  //Coins Per Second
+            1,                  //Coins Per Second
             1);                 //Tier
         upgrades.Add(farm);
         //---------------------------------------------------------------------------
