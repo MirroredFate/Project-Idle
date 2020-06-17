@@ -1638,6 +1638,9 @@ MonoBehaviour:
   coins: 0
   coinsPerClick: 1
   coinsPerSecond: 0
+  critChance: 2
+  critMultiplier: 10
+  didCrit: 0
   coinsTotalperSecond: 0
   coinsTotalperClick: 0
   totalFarmIncome: 0
@@ -2214,8 +2217,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -73.02002, y: -16.599976}
-  m_SizeDelta: {x: 132.04001, y: 24.559998}
+  m_AnchoredPosition: {x: -85.84006, y: -16.599976}
+  m_SizeDelta: {x: 157.68011, y: 24.559998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1713111006
 MonoBehaviour:
@@ -2348,9 +2351,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '0
-
-    0'
+  m_Text: 'LVL: 0'
 --- !u!222 &1955805466
 CanvasRenderer:
   m_ObjectHideFlags: 0

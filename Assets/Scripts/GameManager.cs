@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] double coins;
     [SerializeField] double coinsPerClick = 1;
     [SerializeField] double coinsPerSecond = 0;
+    [SerializeField] float critChance = 2;
+    [SerializeField] double critMultiplier = 10;
+    [SerializeField] bool didCrit = false;
 
     [SerializeField] double coinsTotalperSecond;
     [SerializeField] double coinsTotalperClick;
@@ -85,7 +88,15 @@ public class GameManager : MonoBehaviour
 
     public double GetCoinsPerClick()
     {
-        return coinsPerClick;
+        if (didCrit)
+        {
+            return coinsPerClick * critMultiplier;
+        }
+        else
+        {
+            return coinsPerClick;
+
+        }
     }
 
     public double GetTotalCoins()
@@ -126,6 +137,11 @@ public class GameManager : MonoBehaviour
     public double GetClicksDone()
     {
         return clicksDone;
+    }
+
+    public float GetCritChance()
+    {
+        return critChance;
     }
 
     #endregion
@@ -197,8 +213,18 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseCoins()
     {
-        coins += coinsPerClick;
-        coinsTotalperClick += coinsPerClick;
+        CalculateCrit();
+        if (didCrit)
+        {
+            coins += coinsPerClick * critMultiplier;
+            coinsTotalperClick += coinsPerClick * critMultiplier;
+        }
+        else
+        {
+            coins += coinsPerClick;
+            coinsTotalperClick += coinsPerClick;
+        }
+        
     }
 
     public void LevelUp()
@@ -236,5 +262,37 @@ public class GameManager : MonoBehaviour
         coinsPerClick += System.Math.Pow(increaseAmount, basedOn);
     }
 
+    public void IncreaseCrit(float amount)
+    {
+        if(critChance + amount > 100f)
+        {
+            critChance = 100;
+        }
+        else
+        {
+            critChance += amount;
+        }
+    }
+
+    public void IncreaseCritMultiplier(double amount)
+    {
+        critMultiplier += amount;
+    }
+
+    public void SetCritBool(bool crit)
+    {
+        didCrit = crit;
+    }
+
+    void CalculateCrit()
+    {
+        float rnd = Random.Range(1f, 100f);
+        if (rnd <= critChance)
+        {
+            didCrit = true;
+        }
+        else didCrit = false;
+
+    }
 
 }

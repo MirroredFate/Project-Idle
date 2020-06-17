@@ -430,6 +430,8 @@ public class UIManager : MonoBehaviour
                 clickText.text = "+" + string.Format(GameManager.Instance.GetCoinsPerClick().ToString("e3") + " Coins");
             }
 
+            GameManager.Instance.SetCritBool(false);
+
             
             if (GameManager.Instance.GetXPPerClick() < formatThreshold)
             {
