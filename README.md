@@ -1,6 +1,11 @@
 # Project-Idle
 
 Change-Log:
+
+Version 0.0.9
+ - Added a Save System! 
+ - Added the Ability to Crit with normal clicks (2% Chance for 10x the Coins)
+
 Version 0.0.8
  - Added a new Button design + new Font and Texts
  - You can no longer see how much xp you need for lvl up
