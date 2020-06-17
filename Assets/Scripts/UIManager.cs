@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
         uICollector.infoButton.onClick.AddListener(() => ShowHideInfoPanel());
         uICollector.menuButton.onClick.AddListener(() => ShowHideMenuPanel());
         uICollector.continueButton.onClick.AddListener(() => ShowHideMenuPanel());
+        uICollector.saveButton.onClick.AddListener(() => SaveGame());
+        uICollector.loadButton.onClick.AddListener(() => LoadGame());
         uICollector.exitButton.onClick.AddListener(() => ExitGame());
         uICollector.amountButton.onClick.AddListener(() => BuyAmountButtonClick());
 
@@ -297,6 +299,7 @@ public class UIManager : MonoBehaviour
 
         upgrade.SetActive(true);
 
+        Debug.Log("BaseCost: " + upgrade.GetBaseCost());
         upgrade.SetCost(upgrade.GetBaseCost() * System.Math.Pow(1.15f, upgrade.GetAmount()));
         UpdateUpgradeButtons();
     }
@@ -501,6 +504,17 @@ public class UIManager : MonoBehaviour
         }
 
         return totalCost;
+    }
+
+    void SaveGame()
+    {
+        GameManager.Instance.SaveGame();
+    }
+
+    void LoadGame() 
+    {
+        GameManager.Instance.LoadGame();
+        InstantiateUpgradeButtons();
     }
 
 }

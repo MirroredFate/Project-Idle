@@ -27,6 +27,8 @@ public class UICollector : MonoBehaviour
     public GameObject menuPanel;
     public Button menuButton;
     public Button continueButton;
+    public Button saveButton;
+    public Button loadButton;
     public Button exitButton;
 
     //FadeText Stuff

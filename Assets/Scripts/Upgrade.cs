@@ -54,8 +54,12 @@ public class Upgrade
 
     public void SetCost(double amount)
     {
-        currentCost = baseCost;
         currentCost = amount;
+    }
+
+    public void SetBaseCost(double amoumt)
+    {
+        baseCost = amount;
     }
 
     public void SetCoinsPerClick(double amount)
@@ -68,9 +72,19 @@ public class Upgrade
         coinsPerSecond = amount;
     }
 
+    public void SetCurrentIncome(double amount)
+    {
+        currentIncome = amount;
+    }
+
     public void SetActive(bool active)
     {
         this.active = active;
+    }
+
+    public void SetTier(double amount)
+    {
+        tier = amount;
     }
 
     #endregion

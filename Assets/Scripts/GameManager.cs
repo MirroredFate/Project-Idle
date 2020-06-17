@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public bool admin = false;
 
     [Header("XP / Level stuff")]
-    [SerializeField]double level = 1;
+    [SerializeField] double level = 1;
     [SerializeField] double maxXP = 10;
 
     [SerializeField] double baseMaxXP;
@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Random Info Stuff")]
     [SerializeField] double clicksDone;
-
 
     private void Awake()
     {
@@ -142,6 +141,71 @@ public class GameManager : MonoBehaviour
     public float GetCritChance()
     {
         return critChance;
+    }
+
+    public double GetBaseMaxXP()
+    {
+        return baseMaxXP;
+    }
+
+    public double GetCritMultiplier()
+    {
+        return critMultiplier;
+    }
+
+    public double GetCoinsTotalPerSecond()
+    {
+        return coinsTotalperSecond;
+    }
+
+    public double GetCoinsTotalPerClick()
+    {
+        return coinsTotalperClick;
+    }
+
+    public double GetFarmIncome()
+    {
+        return totalFarmIncome;
+    }
+    public double GetInnIncome()
+    {
+        return totalInnIncome;
+    }
+    public double GetBlacksmithIncome()
+    {
+        return totalBlacksmithIncome;
+    }
+    public double GetBarracksIncome()
+    {
+        return totalBarracksIncome;
+    }
+    public double GetJoustsIncome()
+    {
+        return totalJoustsIncome;
+    }
+    public double GetTowerIncome()
+    {
+        return totalTowerIncome;
+    }
+    public double GetCathedralIncome()
+    {
+        return totalCathedralIncome;
+    }
+    public double GetCitadelIncome()
+    {
+        return totalCitadelIncome;
+    }
+    public double GetCastleIncome()
+    {
+        return totalCastleIncome;
+    }
+    public double GetGateIncome()
+    {
+        return totalGateIncome;
+    }
+    public double GetHallIncome()
+    {
+        return totalHallIncome;
     }
 
     #endregion
@@ -284,6 +348,55 @@ public class GameManager : MonoBehaviour
         didCrit = crit;
     }
 
+    public void SaveGame()
+    {
+        SaveSystem.SaveGame();
+    }
+
+    public void LoadGame()
+    {
+        PlayerData data = SaveSystem.LoadGame();
+
+        level = data.level;
+        maxXP = data.maxXp;
+        baseMaxXP = data.baseMaxXP;
+        xp = data.xp;
+        xpPerClick = data.xpPerClick;
+        coins = data.coins;
+        coinsPerClick = data.coinsPerClick;
+        coinsPerSecond = data.coinsPerSecond;
+        critMultiplier = data.critMultiplier;
+        critChance = data.critChance;
+        coinsTotalperSecond = data.coinsTotalPerSecond;
+        coinsTotalperClick = data.coinsTotalPerClick;
+        totalFarmIncome = data.farmIncome;
+        totalInnIncome = data.innIncome;
+        totalBlacksmithIncome = data.blacksmithIncome;
+        totalBarracksIncome = data.barracksIncome;
+        totalJoustsIncome = data.joustsIncome;
+        totalTowerIncome = data.towerIncome;
+        totalCathedralIncome = data.cathedralIncome;
+        totalCitadelIncome = data.citadelIncome;
+        totalCastleIncome = data.castleIncome;
+        totalGateIncome = data.gateIncome;
+        totalHallIncome = data.hallIncome;
+        clicksDone = data.clicksDone;
+
+        for (int i = 0; i < UpgradeManager.instance.GetUpgradeList().Count - 1; i++)
+        {
+            UpgradeManager.instance.GetUpgradeList()[i].SetName(data.upgradeNames[i]);
+            UpgradeManager.instance.GetUpgradeList()[i].SetAmount(data.amount[i]);
+            UpgradeManager.instance.GetUpgradeList()[i].SetCost(data.currentCost[i]);
+            UpgradeManager.instance.GetUpgradeList()[i].SetCoinsPerSecond(data.upgradeCoinsPerSecond[i]);
+            UpgradeManager.instance.GetUpgradeList()[i].SetCoinsPerClick(data.upgradeCoinsPerClick[i]);
+            UpgradeManager.instance.GetUpgradeList()[i].SetCurrentIncome(data.currentIncome[i]);
+            UpgradeManager.instance.GetUpgradeList()[i].SetTier(data.tier[i]);
+            UpgradeManager.instance.GetUpgradeList()[i].SetActive(data.active[i]);
+        }
+
+
+    }
+
     void CalculateCrit()
     {
         float rnd = Random.Range(1f, 100f);
@@ -294,5 +407,7 @@ public class GameManager : MonoBehaviour
         else didCrit = false;
 
     }
+
+
 
 }

@@ -157,9 +157,14 @@ public class UpgradeManager : MonoBehaviour
         return upgrades;
     }
 
+    public void SetUpgradeList(List<Upgrade> UpgradeList)
+    {
+        upgrades = UpgradeList;
+    }
+
     public Upgrade GetUpgrade(int id)
     {
-        if(upgrades[id] == null)
+        if(upgrades[id] != null)
         {
             return upgrades[id];
 
