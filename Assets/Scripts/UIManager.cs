@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] UICollector uICollector;
 
     float timePassed;
-    double formatThreshold = 999999999999;
+    double formatThreshold = 999999;
 
     // Start is called before the first frame update
     void Start()
@@ -198,17 +198,26 @@ public class UIManager : MonoBehaviour
                 UpgradeButton upBtn = upgradeButton.GetComponent<UpgradeButton>();
                 Upgrade upgrade = upBtn.GetUpgrade();
 
+
                 if (upBtn.GetUpgrade().GetCost() < formatThreshold)
                 {
-                    uptext.text = string.Format(upgrade.GetName() + "\n" +
-                        upgrade.GetCost().ToString("N0") + " Coins") + "\n" +
-                        upgrade.GetAmount().ToString();
+                    //uptext.text = string.Format(upgrade.GetName() + "\n" +
+                    //    upgrade.GetCost().ToString("N0") + " Coins") + "\n" +
+                    //    upgrade.GetAmount().ToString();
+                    upBtn.SetNameText(upgrade.GetName());
+                    upBtn.SetCostText(string.Format(upgrade.GetCost().ToString("N0")));
+                    upBtn.SetValueText("");
+                    upBtn.SetAmountText(upgrade.GetAmount().ToString());
                 }
                 else
                 {
-                    uptext.text = string.Format(upgrade.GetName() + "\n" +
-                        upgrade.GetCost().ToString("e3") + " Coins") + "\n" +
-                        upgrade.GetAmount().ToString();
+                    //uptext.text = string.Format(upgrade.GetName() + "\n" +
+                    //    upgrade.GetCost().ToString("e3") + " Coins") + "\n" +
+                    //    upgrade.GetAmount().ToString();
+                    upBtn.SetNameText(upgrade.GetName());
+                    upBtn.SetCostText(string.Format(upgrade.GetCost().ToString("e3")));
+                    upBtn.SetValueText("");
+                    upBtn.SetAmountText(upgrade.GetAmount().ToString());
                 }
 
                 uICollector.upgradeButtonList.Add(upgradeButton);
@@ -300,21 +309,32 @@ public class UIManager : MonoBehaviour
             {
 
                 Text uptext = button.GetComponentInChildren<Text>();
+                UpgradeButton upBtn = button.GetComponent<UpgradeButton>();
                 Upgrade upgrade = button.GetComponent<UpgradeButton>().GetUpgrade();
 
                 if (uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount() > 1)
                 {
                     if (CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()) < formatThreshold)
                     {
-                        uptext.text = string.Format(upgrade.GetName() + "\n" +
-                           uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmountText() + " " + CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()).ToString("N0") + " Coins") + "\n" +
-                            upgrade.GetAmount().ToString();
+                        //uptext.text = string.Format(upgrade.GetName() + "\n" +
+                        //   uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmountText() + " " + CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()).ToString("N0") + " Coins") + "\n" +
+                        //    upgrade.GetAmount().ToString();
+
+                        upBtn.SetNameText(upgrade.GetName());
+                        upBtn.SetCostText(uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmountText() + " " + CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()).ToString("N0"));
+                        upBtn.SetValueText("");
+                        upBtn.SetAmountText(upgrade.GetAmount().ToString());
                     }
                     else
                     {
-                        uptext.text = string.Format(upgrade.GetName() + "\n" +
-                            uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmountText() + " " + CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()).ToString("e3") + " Coins") + "\n" +
-                            upgrade.GetAmount().ToString();
+                        //uptext.text = string.Format(upgrade.GetName() + "\n" +
+                        //    uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmountText() + " " + CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()).ToString("e3") + " Coins") + "\n" +
+                        //    upgrade.GetAmount().ToString();
+
+                        upBtn.SetNameText(upgrade.GetName());
+                        upBtn.SetCostText(uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmountText() + " " + CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()).ToString("e3"));
+                        upBtn.SetValueText("");
+                        upBtn.SetAmountText(upgrade.GetAmount().ToString());
                     }
 
                     if (CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()) <= GameManager.Instance.GetCoins())
@@ -330,15 +350,25 @@ public class UIManager : MonoBehaviour
                 {
                     if (upgrade.GetCost() < formatThreshold)
                     {
-                        uptext.text = string.Format(upgrade.GetName() + "\n" +
-                            upgrade.GetCost().ToString("N0") + " Coins") + "\n" +
-                            upgrade.GetAmount().ToString();
+                        //uptext.text = string.Format(upgrade.GetName() + "\n" +
+                        //    upgrade.GetCost().ToString("N0") + " Coins") + "\n" +
+                        //    upgrade.GetAmount().ToString();
+
+                        upBtn.SetNameText(upgrade.GetName());
+                        upBtn.SetCostText(string.Format(upgrade.GetCost().ToString("N0")));
+                        upBtn.SetValueText("");
+                        upBtn.SetAmountText(upgrade.GetAmount().ToString());
                     }
                     else
                     {
-                        uptext.text = string.Format(upgrade.GetName() + "\n" +
-                            upgrade.GetCost().ToString("e3") + " Coins") + "\n" +
-                            upgrade.GetAmount().ToString();
+                        //uptext.text = string.Format(upgrade.GetName() + "\n" +
+                        //    upgrade.GetCost().ToString("e3") + " Coins") + "\n" +
+                        //    upgrade.GetAmount().ToString();
+
+                        upBtn.SetNameText(upgrade.GetName());
+                        upBtn.SetCostText(string.Format(upgrade.GetCost().ToString("e3")));
+                        upBtn.SetValueText("");
+                        upBtn.SetAmountText(upgrade.GetAmount().ToString());
                     }
 
                     if (upgrade.GetCost() <= GameManager.Instance.GetCoins())
