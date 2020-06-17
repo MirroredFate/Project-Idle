@@ -2,6 +2,10 @@
 
 Change-Log:
 
+Version 0.0.10
+ - Added Tooltips!
+ - Buildings now show a percentage of their production based of total production
+ 
 Version 0.0.9
  - Added a Save System! 
  - Added the Ability to Crit with normal clicks (2% Chance for 10x the Coins)
