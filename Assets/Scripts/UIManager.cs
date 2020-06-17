@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -22,6 +23,7 @@ public class UIManager : MonoBehaviour
         uICollector.loadButton.onClick.AddListener(() => LoadGame());
         uICollector.exitButton.onClick.AddListener(() => ExitGame());
         uICollector.amountButton.onClick.AddListener(() => BuyAmountButtonClick());
+
 
         uICollector.upgradeButtonList = new List<Button>();
         UpgradeManager.instance.InitializeUpgrades();
@@ -172,6 +174,8 @@ public class UIManager : MonoBehaviour
     }
 
     #region Upgrade Related Stuff
+
+
     void InstantiateUpgradeButtons()
     {
         if(UpgradeManager.instance.GetUpgradeList() != null && UpgradeManager.instance.GetUpgradeList().Count > 0)
@@ -207,8 +211,8 @@ public class UIManager : MonoBehaviour
                     //    upgrade.GetCost().ToString("N0") + " Coins") + "\n" +
                     //    upgrade.GetAmount().ToString();
                     upBtn.SetNameText(upgrade.GetName());
-                    upBtn.SetCostText(string.Format(upgrade.GetCost().ToString("N0")));
-                    upBtn.SetValueText("");
+                    upBtn.SetCostText(string.Format(upgrade.GetCost().ToString("N0") + " Coins"));
+                    upBtn.SetValueText(string.Format(upgrade.GetCurrentIncomePercentage().ToString("N2") + "%"));
                     upBtn.SetAmountText(upgrade.GetAmount().ToString());
                 }
                 else
@@ -217,8 +221,8 @@ public class UIManager : MonoBehaviour
                     //    upgrade.GetCost().ToString("e3") + " Coins") + "\n" +
                     //    upgrade.GetAmount().ToString();
                     upBtn.SetNameText(upgrade.GetName());
-                    upBtn.SetCostText(string.Format(upgrade.GetCost().ToString("e3")));
-                    upBtn.SetValueText("");
+                    upBtn.SetCostText(string.Format(upgrade.GetCost().ToString("e3") + " Coins"));
+                    upBtn.SetValueText(string.Format(upgrade.GetCurrentIncomePercentage().ToString("N2") + "%"));
                     upBtn.SetAmountText(upgrade.GetAmount().ToString());
                 }
 
@@ -324,8 +328,8 @@ public class UIManager : MonoBehaviour
                         //    upgrade.GetAmount().ToString();
 
                         upBtn.SetNameText(upgrade.GetName());
-                        upBtn.SetCostText(uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmountText() + " " + CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()).ToString("N0"));
-                        upBtn.SetValueText("");
+                        upBtn.SetCostText(uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmountText() + " " + CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()).ToString("N0") + " Coins");
+                        upBtn.SetValueText(string.Format(upgrade.GetCurrentIncomePercentage().ToString("N2") + "%"));
                         upBtn.SetAmountText(upgrade.GetAmount().ToString());
                     }
                     else
@@ -335,8 +339,8 @@ public class UIManager : MonoBehaviour
                         //    upgrade.GetAmount().ToString();
 
                         upBtn.SetNameText(upgrade.GetName());
-                        upBtn.SetCostText(uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmountText() + " " + CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()).ToString("e3"));
-                        upBtn.SetValueText("");
+                        upBtn.SetCostText(uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmountText() + " " + CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()).ToString("e3") + " Coins");
+                        upBtn.SetValueText(string.Format(upgrade.GetCurrentIncomePercentage().ToString("N2") + "%"));
                         upBtn.SetAmountText(upgrade.GetAmount().ToString());
                     }
 
@@ -358,8 +362,8 @@ public class UIManager : MonoBehaviour
                         //    upgrade.GetAmount().ToString();
 
                         upBtn.SetNameText(upgrade.GetName());
-                        upBtn.SetCostText(string.Format(upgrade.GetCost().ToString("N0")));
-                        upBtn.SetValueText("");
+                        upBtn.SetCostText(string.Format(upgrade.GetCost().ToString("N0") + " Coins"));
+                        upBtn.SetValueText(string.Format(upgrade.GetCurrentIncomePercentage().ToString("N2") + "%"));
                         upBtn.SetAmountText(upgrade.GetAmount().ToString());
                     }
                     else
@@ -369,8 +373,8 @@ public class UIManager : MonoBehaviour
                         //    upgrade.GetAmount().ToString();
 
                         upBtn.SetNameText(upgrade.GetName());
-                        upBtn.SetCostText(string.Format(upgrade.GetCost().ToString("e3")));
-                        upBtn.SetValueText("");
+                        upBtn.SetCostText(string.Format(upgrade.GetCost().ToString("e3") + " Coins"));
+                        upBtn.SetValueText(string.Format(upgrade.GetCurrentIncomePercentage().ToString("N2") + "%"));
                         upBtn.SetAmountText(upgrade.GetAmount().ToString());
                     }
 

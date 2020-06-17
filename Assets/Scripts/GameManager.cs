@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
     }
 
     // Start is called before the first frame update
@@ -65,6 +66,7 @@ public class GameManager : MonoBehaviour
         }
 
         baseMaxXP = maxXP;
+        Tooltip.instance.HideTooltip();
     }
 
     // Update is called once per frame
@@ -348,6 +350,24 @@ public class GameManager : MonoBehaviour
         didCrit = crit;
     }
 
+    void CalculateCrit()
+    {
+        float rnd = Random.Range(1f, 100f);
+        if (rnd <= critChance)
+        {
+            didCrit = true;
+        }
+        else didCrit = false;
+
+    }
+
+
+
+
+
+
+    #region Save/Load
+
     public void SaveGame()
     {
         SaveSystem.SaveGame();
@@ -397,16 +417,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void CalculateCrit()
-    {
-        float rnd = Random.Range(1f, 100f);
-        if (rnd <= critChance)
-        {
-            didCrit = true;
-        }
-        else didCrit = false;
-
-    }
+    #endregion
 
 
 

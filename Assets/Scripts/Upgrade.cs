@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public enum IncomeType { CPS, CPC}
@@ -146,7 +147,7 @@ public class Upgrade
     {
         if(amount == 0)
         {
-            currentIncome = (amount + 1) * coinsPerSecond;
+            currentIncome = 0;
         }
         else if(amount > 0)
         {
@@ -154,6 +155,35 @@ public class Upgrade
         }
 
         return currentIncome; 
+    }
+
+    public string GetNextUpgradeTText()
+    {
+        if(amount == 0)
+        {
+            return "Next Upgrade in 5";
+        }
+        else
+        {
+            double amountCalc = (amount) % 5;
+
+            return "Next Upgrade in " + (5-amountCalc);
+        }
+        
+    }
+
+    public float GetCurrentIncomePercentage()
+    {
+        float currentIncomePercentage = ((float)GetCurrentIncome() / (float)GameManager.Instance.GetCoinsPerSecond()) * 100f;
+        if(amount == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return currentIncomePercentage;
+
+        }
     }
 
     #endregion

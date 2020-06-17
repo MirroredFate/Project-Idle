@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UpgradeButton : MonoBehaviour
@@ -42,4 +43,6 @@ public class UpgradeButton : MonoBehaviour
     {
         amountText.text = amount;
     }
+
+
 }
