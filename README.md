@@ -1,7 +1,11 @@
 # Project-Idle
 
 Change-Log:
-
+Version 0.0.8
+ - Added a new Button design + new Font and Texts
+ - You can no longer see how much xp you need for lvl up
+  (could come back in a later update as a tooltip)
+  
 Version 0.0.7
  - Added a new button to buy certain amounts of a Building instead of just buying one at a time.
 
