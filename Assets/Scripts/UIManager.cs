@@ -101,7 +101,7 @@ public class UIManager : MonoBehaviour
         }
 
 
-        uICollector.infoNumbers.text = string.Format(totalCoins + "\n\n" + totalCoinsPerClick + "\n\n" + totalCoinsPerSecond + "\n\n\n" + GameManager.Instance.GetClicksDone());
+        uICollector.infoNumbers.text = string.Format(totalCoins + "\n\n" + totalCoinsPerClick + "\n\n" + totalCoinsPerSecond + "\n\n\n\n" + GameManager.Instance.GetClicksDone());
 
 
         #endregion
