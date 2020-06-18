@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UICollector : MonoBehaviour
 {
+    public static UICollector Instance { get; private set; }
+
     //General Click Stuff
     [Header("General Click Stuff")]
     public Text coinStatText;
@@ -31,6 +33,13 @@ public class UICollector : MonoBehaviour
     public Button loadButton;
     public Button exitButton;
 
+    //Quit Panel Stuff
+    [Header("Quit Panel Stuff")]
+    public GameObject quitPanel;
+    public Button saveQuitButton;
+    public Button noSaveQuitButton;
+    public Button cancelButton;
+
     //FadeText Stuff
     [Header("Fade Text Stuff")]
     public GameObject clickText;
@@ -44,6 +53,19 @@ public class UICollector : MonoBehaviour
     public List<Button> upgradeButtonList;
     public Button amountButton;
 
-    
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+    }
+
 
 }

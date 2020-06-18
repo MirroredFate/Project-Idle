@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
 
     float timePassed;
     double formatThreshold = 999999;
+    static bool quitComfirmation = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,9 @@ public class UIManager : MonoBehaviour
         uICollector.saveButton.onClick.AddListener(() => SaveGame());
         uICollector.loadButton.onClick.AddListener(() => LoadGame());
         uICollector.exitButton.onClick.AddListener(() => ExitGame());
+        uICollector.saveQuitButton.onClick.AddListener(() => SaveAndQuit());
+        uICollector.noSaveQuitButton.onClick.AddListener(() => NoSaveButQuit());
+        uICollector.cancelButton.onClick.AddListener(() => QuitCancel());
         uICollector.amountButton.onClick.AddListener(() => BuyAmountButtonClick());
 
 
@@ -458,6 +463,7 @@ public class UIManager : MonoBehaviour
     void LoadGame() 
     {
         GameManager.Instance.LoadGame();
+        HideAllPanels();
         InstantiateUpgradeButtons();
         UpdateCoinsInfo();
         UpdateXPInfo();
@@ -580,4 +586,56 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.LevelUp();
         }
     }
+
+    void SaveAndQuit()
+    {
+        GameManager.Instance.SaveGame();
+        quitComfirmation = true;
+        Application.Quit();
+    }
+
+    void NoSaveButQuit()
+    {
+        quitComfirmation = true;
+        Application.Quit();
+    }
+
+    void QuitCancel()
+    {
+        uICollector.quitPanel.SetActive(false);
+    }
+
+    public static void ShowQuitPanel()
+    {
+        UICollector.Instance.quitPanel.SetActive(true);
+    }
+
+    [RuntimeInitializeOnLoadMethod]
+    static void RunOnStart()
+    {
+        Application.wantsToQuit += WantsToQuit;
+    }
+
+    static bool WantsToQuit()
+    {
+        if(quitComfirmation)
+        {
+            return true;
+        }
+        else
+        {
+            HideAllPanels();
+            ShowQuitPanel();
+        }
+        return false;
+    }
+
+    static void HideAllPanels()
+    {
+        UICollector.Instance.infoPanel.SetActive(false);
+        UICollector.Instance.menuPanel.SetActive(false);
+        UICollector.Instance.quitPanel.SetActive(false);
+    }
+   
+
 }

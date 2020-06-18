@@ -378,11 +378,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void OnApplicationQuit()
-    {
-        SaveGame();
-    }
-
 
 
     #region Save/Load
