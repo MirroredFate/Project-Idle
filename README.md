@@ -2,6 +2,11 @@
 
 Change-Log:
 
+Version 0.0.10a
+ - added special crit Text, so you can finally see when you actually did a crit!
+ - the information panel now shows how often you did a crit! Damn!
+ - oh and some perfomance updates
+
 Version 0.0.10
  - Added Tooltips!
  - Buildings now show a percentage of their production based of total production
