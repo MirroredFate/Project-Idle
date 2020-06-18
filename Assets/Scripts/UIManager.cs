@@ -424,6 +424,7 @@ public class UIManager : MonoBehaviour
 
     void ExitGame()
     {
+        GameManager.Instance.SaveGame();
         Application.Quit();
     }
 
