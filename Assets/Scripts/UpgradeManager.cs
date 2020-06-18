@@ -145,7 +145,7 @@ public class UpgradeManager : MonoBehaviour
            200000000000,                   //Cost
            IncomeType.CPS,                 //Type
            0,                              //Coins per Click
-           2500000,                     //Coins Per Second
+           13000000,                     //Coins Per Second
            11);                       //Tier
         upgrades.Add(hall);
         //---------------------------------------------------------------------------
