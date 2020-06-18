@@ -10,7 +10,7 @@ Version 0.0.11
  - moved coins per second to the coins tooltip and replaced it in the bar with crit chance
  - more accuracte numbers! No more rounding
  - You crit more often now! you now get a guaranteed crit if you clicked enough without critting once.
- - Add Gold Coins! Every crit gets you 1 Gold Coin. (Will be used in future updates)
+ - Added Gold Coins! Every crit gets you 1 Gold Coin. (Will be used in future updates)
 
 Version 0.0.10a
  - added special crit Text, so you can finally see when you actually did a crit!
