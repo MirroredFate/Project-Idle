@@ -480,7 +480,7 @@ public class UIManager : MonoBehaviour
             uICollector.coinStatText.text = coins.ToString("e3") + " Coins";
         }
 
-        UICollector.Instance.critStatText.text = GameManager.Instance.GetCritChance().ToString() + " Crit Chance";
+        UICollector.Instance.critStatText.text = GameManager.Instance.GetCritChance().ToString() + "% Crit Chance";
 
         
     }
