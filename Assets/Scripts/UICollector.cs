@@ -10,7 +10,7 @@ public class UICollector : MonoBehaviour
     //General Click Stuff
     [Header("General Click Stuff")]
     public Text coinStatText;
-    public Text cpsStatText;
+    public Text critStatText;
     public Button clickButton;
 
     //XP Bar Stuff

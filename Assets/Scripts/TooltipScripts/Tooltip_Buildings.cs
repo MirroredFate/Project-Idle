@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class OnHoverButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class Tooltip_Buildings : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-
+    [SerializeField] Transform tooltipPostion;
 
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -16,16 +17,16 @@ public class OnHoverButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if(uInfo.GetCurrentIncome() < 999999)
         {
             Tooltip.instance.ShowTooltip(string.Format(uInfo.GetName() + "\n"
-                        + uInfo.GetCoinsPerSecond().ToString("N0") + " CPS" + "\n"
+                        + uInfo.GetCoinsPerSecond().ToString("N1") + " CPS" + "\n"
                         + uInfo.GetNextUpgradeTText()) + "\n"
-                        + "Currently " + uInfo.GetCurrentIncome().ToString("N0") + " CPS");
+                        + "Currently " + uInfo.GetCurrentIncome().ToString("N1") + " CPS", tooltipPostion);
         }
         else
         {
             Tooltip.instance.ShowTooltip(string.Format(uInfo.GetName() + "\n"
             + uInfo.GetCoinsPerSecond().ToString("e3") + " CPS" + "\n"
             + uInfo.GetNextUpgradeTText()) + "\n"
-            + "Currently " + uInfo.GetCurrentIncome().ToString("e3") + " CPS");
+            + "Currently " + uInfo.GetCurrentIncome().ToString("e3") + " CPS", tooltipPostion);
         }
 
         

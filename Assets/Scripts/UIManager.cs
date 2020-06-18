@@ -55,14 +55,6 @@ public class UIManager : MonoBehaviour
         }
         #endregion
 
-        #region Upgrade Button Behaviour Update
-
-
-        
-
-
-        #endregion
-
         #region BuyAmount Button Update
 
         Text text = uICollector.amountButton.GetComponentInChildren<Text>();
@@ -316,7 +308,7 @@ public class UIManager : MonoBehaviour
 
             if(GameManager.Instance.GetCoinsPerSecond() < formatThreshold)
             {
-                clickText.text = "+" + string.Format(GameManager.Instance.GetCoinsPerSecond().ToString("N0") + " Coins");
+                clickText.text = "+" + string.Format(GameManager.Instance.GetCoinsPerSecond().ToString("N1") + " Coins");
                 UpdateCoinsInfo();
             }
             else
@@ -341,12 +333,12 @@ public class UIManager : MonoBehaviour
             {
                 if (GameManager.Instance.GetDidCrit())
                 {
-                    clickText.text = "CRIT!     +" + string.Format(GameManager.Instance.GetCoinsPerClick().ToString("N0") + " Coins");
+                    clickText.text = "CRIT!     +" + string.Format(GameManager.Instance.GetCoinsPerClick().ToString("N1") + " Coins");
                     UpdateCoinsInfo();
                 }
                 else
                 {
-                    clickText.text = "+" + string.Format(GameManager.Instance.GetCoinsPerClick().ToString("N0") + " Coins");
+                    clickText.text = "+" + string.Format(GameManager.Instance.GetCoinsPerClick().ToString("N1") + " Coins");
                     UpdateCoinsInfo();
                 }
 
@@ -371,7 +363,7 @@ public class UIManager : MonoBehaviour
             
             if (GameManager.Instance.GetXPPerClick() < formatThreshold)
             {
-                clickXPText.text = string.Format("+" + GameManager.Instance.GetXPPerClick().ToString("N0") + " XP");
+                clickXPText.text = string.Format("+" + GameManager.Instance.GetXPPerClick().ToString("N1") + " XP");
                 UpdateCoinsInfo();
             }
             else
@@ -478,24 +470,19 @@ public class UIManager : MonoBehaviour
 
     void UpdateCoinsClickInfo()
     {
-        double coins = System.Math.Round(GameManager.Instance.GetCoins());
+        double coins = GameManager.Instance.GetCoins();
         if (GameManager.Instance.GetCoins() < formatThreshold)
         {
-            uICollector.coinStatText.text = coins.ToString("N0") + " Coins";
+            uICollector.coinStatText.text = coins.ToString("N1") + " Coins";
         }
         else
         {
             uICollector.coinStatText.text = coins.ToString("e3") + " Coins";
         }
 
-        if (GameManager.Instance.GetCoinsPerSecond() < formatThreshold)
-        {
-            uICollector.cpsStatText.text = GameManager.Instance.GetCoinsPerSecond().ToString("N0") + " Coins/s";
-        }
-        else
-        {
-            uICollector.cpsStatText.text = GameManager.Instance.GetCoinsPerSecond().ToString("e3") + " Coins/s";
-        }
+        UICollector.Instance.critStatText.text = GameManager.Instance.GetCritChance().ToString() + " Crit Chance";
+
+        
     }
 
     void InfoPanelUpdate()
@@ -507,7 +494,7 @@ public class UIManager : MonoBehaviour
 
         if (GameManager.Instance.GetTotalCoins() < formatThreshold)
         {
-            totalCoins = GameManager.Instance.GetTotalCoins().ToString("N0");
+            totalCoins = GameManager.Instance.GetTotalCoins().ToString("N1");
         }
         else
         {
@@ -516,7 +503,7 @@ public class UIManager : MonoBehaviour
 
         if (GameManager.Instance.GetTotalCoinsPerClick() < formatThreshold)
         {
-            totalCoinsPerClick = GameManager.Instance.GetTotalCoinsPerClick().ToString("N0");
+            totalCoinsPerClick = GameManager.Instance.GetTotalCoinsPerClick().ToString("N1");
         }
         else
         {
@@ -525,7 +512,7 @@ public class UIManager : MonoBehaviour
 
         if (GameManager.Instance.GetTotalCoinsPerSecond() < formatThreshold)
         {
-            totalCoinsPerSecond = GameManager.Instance.GetTotalCoinsPerSecond().ToString("N0");
+            totalCoinsPerSecond = GameManager.Instance.GetTotalCoinsPerSecond().ToString("N1");
         }
         else
         {

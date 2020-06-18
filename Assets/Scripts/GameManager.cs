@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
     [Header("Random Info Stuff")]
     [SerializeField] double clicksDone;
     [SerializeField] double criticalClicksDone;
+    [SerializeField] double goldCoins;
+    [SerializeField] int unluckCounter;
 
     private void Awake()
     {
@@ -221,6 +223,16 @@ public class GameManager : MonoBehaviour
         return totalHallIncome;
     }
 
+    public int GetUnluckCounter()
+    {
+        return unluckCounter;
+    }
+
+    public double GetGoldCoins()
+    {
+        return goldCoins;
+    }
+
     #endregion
 
 
@@ -293,6 +305,11 @@ public class GameManager : MonoBehaviour
         coins -= amount;
     }
 
+    public void RemoveGoldCoins(double amount)
+    {
+        goldCoins -= amount;
+    }
+
     public void IncreaseCoins()
     {
         CalculateCrit();
@@ -300,6 +317,7 @@ public class GameManager : MonoBehaviour
         {
             coins += coinsPerClick * critMultiplier;
             coinsTotalperClick += coinsPerClick * critMultiplier;
+            goldCoins++;
         }
         else
         {
@@ -366,16 +384,28 @@ public class GameManager : MonoBehaviour
         didCrit = crit;
     }
 
+    public float GetXPPercentage()
+    {
+        return ((float)xp / (float)maxXP) * 100f;
+    }
+
     void CalculateCrit()
     {
         float rnd = Random.Range(1f, 100f);
-        if (rnd <= critChance)
+        if (rnd <= critChance || unluckCounter >= (100/critChance))
         {
             didCrit = true;
+            unluckCounter = 0;
         }
-        else didCrit = false;
+        else
+        {
+            unluckCounter++;
+            didCrit = false;
+        }
 
     }
+
+
 
 
 
@@ -415,6 +445,7 @@ public class GameManager : MonoBehaviour
         totalGateIncome = data.gateIncome;
         totalHallIncome = data.hallIncome;
         clicksDone = data.clicksDone;
+        unluckCounter = data.unluckCounter;
 
         for (int i = 0; i < UpgradeManager.instance.GetUpgradeList().Count - 1; i++)
         {

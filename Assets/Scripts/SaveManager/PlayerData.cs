@@ -37,6 +37,7 @@ public class PlayerData
 
     public double clicksDone;
     public double criticalClicksDone;
+    public int unluckCounter;
 
     //Data for each Building
     public string[] upgradeNames;
@@ -76,6 +77,7 @@ public class PlayerData
         hallIncome = GameManager.Instance.GetHallIncome();
         clicksDone = GameManager.Instance.GetClicksDone();
         criticalClicksDone = GameManager.Instance.GetCriticalClicksDone();
+        unluckCounter = GameManager.Instance.GetUnluckCounter();
 
         upgradeNames = new string[10];
         amount = new double[10];

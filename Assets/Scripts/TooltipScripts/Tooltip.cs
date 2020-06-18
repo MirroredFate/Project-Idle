@@ -20,18 +20,21 @@ public class Tooltip : MonoBehaviour
 
     private void Update()
     {
-        Vector2 localPoint;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(transform.parent.GetComponent<RectTransform>(), Input.mousePosition, null, out localPoint);
-        transform.localPosition = localPoint;
+        //Vector2 localPoint;
+        //RectTransformUtility.ScreenPointToLocalPointInRectangle(transform.parent.GetComponent<RectTransform>(), Input.mousePosition, null, out localPoint);
+        //transform.localPosition = localPoint;
     }
 
 
-    public void ShowTooltip(string tooltipString)
+    public void ShowTooltip(string tooltipString, Transform position)
     {
+        Vector2 localPoint;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(transform.parent.GetComponent<RectTransform>(), position.position, null, out localPoint);
+        transform.localPosition = localPoint;
         gameObject.SetActive(true);
 
         tooltipText.text = tooltipString;
-        float textPaddingSize = 4f;
+        float textPaddingSize = 8f;
         Vector2 backgroundSize = new Vector2(tooltipText.preferredWidth + textPaddingSize, tooltipText.preferredHeight + textPaddingSize);
         backgroundRectTransform.sizeDelta = backgroundSize;
     }
