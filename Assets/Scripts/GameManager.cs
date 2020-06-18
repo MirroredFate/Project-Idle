@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Random Info Stuff")]
     [SerializeField] double clicksDone;
+    [SerializeField] double criticalClicksDone;
 
     private void Awake()
     {
@@ -140,9 +141,19 @@ public class GameManager : MonoBehaviour
         return clicksDone;
     }
 
+    public double GetCriticalClicksDone()
+    {
+        return criticalClicksDone;
+    }
+
     public float GetCritChance()
     {
         return critChance;
+    }
+
+    public bool GetDidCrit()
+    {
+        return didCrit;
     }
 
     public double GetBaseMaxXP()
@@ -227,6 +238,11 @@ public class GameManager : MonoBehaviour
     public void IncreaseClicksDone()
     {
         clicksDone++;
+    }
+
+    public void IncreaseCriticalClicksDone()
+    {
+        criticalClicksDone++;
     }
 
 

@@ -36,6 +36,7 @@ public class PlayerData
     public double hallIncome;
 
     public double clicksDone;
+    public double criticalClicksDone;
 
     //Data for each Building
     public string[] upgradeNames;
@@ -74,6 +75,7 @@ public class PlayerData
         gateIncome = GameManager.Instance.GetGateIncome();
         hallIncome = GameManager.Instance.GetHallIncome();
         clicksDone = GameManager.Instance.GetClicksDone();
+        criticalClicksDone = GameManager.Instance.GetCriticalClicksDone();
 
         upgradeNames = new string[10];
         amount = new double[10];
