@@ -2,6 +2,16 @@
 
 Change-Log:
 
+Version 0.0.11
+ - Balance Update!
+  - Hall of Legends now produces over 10x Coins!
+ - when you close the application, a new window now appears asking you if you want to save and quit or just quit, or you clicked accidently on the close button. Progress was saved today!
+ - added tooltips for almost everything + the tooltip doesnt follow the mouse around anymore. It has fixed positions now. FANCY!
+ - moved coins per second to the coins tooltip and replaced it in the bar with crit chance
+ - more accuracte numbers! No more rounding
+ - You crit more often now! you now get a guaranteed crit if you clicked enough without critting once.
+ - Add Gold Coins! Every crit gets you 1 Gold Coin. (Will be used in future updates)
+
 Version 0.0.10a
  - added special crit Text, so you can finally see when you actually did a crit!
  - the information panel now shows how often you did a crit! Damn!
