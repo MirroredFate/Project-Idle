@@ -29,13 +29,15 @@ public class UIManager : MonoBehaviour
         uICollector.noSaveQuitButton.onClick.AddListener(() => NoSaveButQuit());
         uICollector.cancelButton.onClick.AddListener(() => QuitCancel());
         uICollector.amountButton.onClick.AddListener(() => BuyAmountButtonClick());
+        GameEvents.current.onCoinChangeTrigger += UpdateCoinsInfo;
+        GameEvents.current.onXPChange += UpdateXPInfo;
 
 
         uICollector.upgradeButtonList = new List<Button>();
         UpgradeManager.instance.InitializeUpgrades();
         InstantiateUpgradeButtons();
-        UpdateCoinsInfo();
-        UpdateXPInfo();
+        GameEvents.current.CoinChangeTrigger();
+        GameEvents.current.XPChange();
     }
 
     // Update is called once per frame
@@ -139,7 +141,7 @@ public class UIManager : MonoBehaviour
             if(upgrade.GetCost() <= GameManager.Instance.GetCoins())
             {
                 GameManager.Instance.RemoveCoins(System.Math.Round(upgrade.GetCost()));
-                UpdateCoinsInfo();
+                GameEvents.current.CoinChangeTrigger();
                 double amountCalc = (upgrade.GetAmount() + 1) % 5;
 
                 if (amountCalc == 0)
@@ -155,7 +157,7 @@ public class UIManager : MonoBehaviour
             if (CalcCost(upgrade, amountBtn.GetAmount()) <= GameManager.Instance.GetCoins())
             {
                 GameManager.Instance.RemoveCoins(System.Math.Round(CalcCost(upgrade, amountBtn.GetAmount())));
-                UpdateCoinsInfo();
+                GameEvents.current.CoinChangeTrigger();
 
                 Upgrade tempUpgrade = new Upgrade("temp", 0, upgrade.GetCost(), IncomeType.CPS, 0, upgrade.GetCoinsPerSecond(), 99);
                 for (int i = 0; i < amountBtn.GetAmount() - 1; i++)
@@ -198,7 +200,7 @@ public class UIManager : MonoBehaviour
 
         Debug.Log("BaseCost: " + upgrade.GetBaseCost());
         upgrade.SetCost(upgrade.GetBaseCost() * System.Math.Pow(1.15f, upgrade.GetAmount()));
-        UpdateCoinsInfo();
+        GameEvents.current.CoinChangeTrigger();
         UpdateUpgradeButtons();
     }
 
@@ -313,12 +315,12 @@ public class UIManager : MonoBehaviour
             if(GameManager.Instance.GetCoinsPerSecond() < formatThreshold)
             {
                 clickText.text = "+" + string.Format(GameManager.Instance.GetCoinsPerSecond().ToString("N1") + "<sprite=0>");
-                UpdateCoinsInfo();
+                GameEvents.current.CoinChangeTrigger();
             }
             else
             {
                 clickText.text = "+" + string.Format(GameManager.Instance.GetCoinsPerSecond().ToString("e3") + "<sprite=0>");
-                UpdateCoinsInfo();
+                GameEvents.current.CoinChangeTrigger();
             }
             
         }
@@ -326,7 +328,7 @@ public class UIManager : MonoBehaviour
         {
             GameManager.Instance.IncreaseCoins();
             GameManager.Instance.XPClick();
-            UpdateXPInfo();
+            GameEvents.current.XPChange();
             if (GameManager.Instance.GetDidCrit())
             {
                 GameManager.Instance.IncreaseCriticalClicksDone();
@@ -338,12 +340,12 @@ public class UIManager : MonoBehaviour
                 if (GameManager.Instance.GetDidCrit())
                 {
                     clickText.text = "CRIT!+" + string.Format(GameManager.Instance.GetCoinsPerClick().ToString("N1") + "<sprite=0>");
-                    UpdateCoinsInfo();
+                    GameEvents.current.CoinChangeTrigger();
                 }
                 else
                 {
                     clickText.text = "+" + string.Format(GameManager.Instance.GetCoinsPerClick().ToString("N1") + "<sprite=0>");
-                    UpdateCoinsInfo();
+                    GameEvents.current.CoinChangeTrigger();
                 }
 
             }
@@ -352,12 +354,12 @@ public class UIManager : MonoBehaviour
                 if (GameManager.Instance.GetDidCrit())
                 {
                     clickText.text = "CRIT!+" + string.Format(GameManager.Instance.GetCoinsPerClick().ToString("e3") + "<sprite=0>");
-                    UpdateCoinsInfo();
+                    GameEvents.current.CoinChangeTrigger();
                 }
                 else
                 {
                     clickText.text = "+" + string.Format(GameManager.Instance.GetCoinsPerClick().ToString("e3") + "<sprite=0>");
-                    UpdateCoinsInfo();
+                    GameEvents.current.CoinChangeTrigger();
                 }
                 
             }
@@ -368,12 +370,12 @@ public class UIManager : MonoBehaviour
             if (GameManager.Instance.GetXPPerClick() < formatThreshold)
             {
                 clickXPText.text = string.Format("+" + GameManager.Instance.GetXPPerClick().ToString("N1") + "<sprite=1>");
-                UpdateCoinsInfo();
+                GameEvents.current.CoinChangeTrigger();
             }
             else
             {
                 clickXPText.text = string.Format("+" + GameManager.Instance.GetXPPerClick().ToString("e3") + "<sprite=1>");
-                UpdateCoinsInfo();
+                GameEvents.current.CoinChangeTrigger();
             }
         }
 
@@ -464,7 +466,7 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.LoadGame();
         HideAllPanels();
         InstantiateUpgradeButtons();
-        UpdateCoinsInfo();
+        GameEvents.current.CoinChangeTrigger();
         UpdateXPInfo();
     }
 
@@ -578,7 +580,7 @@ public class UIManager : MonoBehaviour
         if (GameManager.Instance.GetCurrentXP() >= GameManager.Instance.GetMaxXP())
         {
             GameManager.Instance.LevelUp();
-            UpdateXPInfo();
+            GameEvents.current.XPChange();
         }
 
     }
