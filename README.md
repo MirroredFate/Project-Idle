@@ -2,6 +2,12 @@
 
 Change-Log:
 
+Version 0.0.11b
+ - New UI!
+ - New Background! (WIP)
+ - Texts are now way more fancier than ever before!
+ - Texts now have sprites! Is this even real life?
+
 Version 0.0.11
  - Balance Update!
   - Hall of Legends now produces over 10x Coins!
