@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UICollector : MonoBehaviour
 {
@@ -9,14 +10,14 @@ public class UICollector : MonoBehaviour
 
     //General Click Stuff
     [Header("General Click Stuff")]
-    public Text coinStatText;
-    public Text critStatText;
+    public TextMeshProUGUI coinStatText;
+    public TextMeshProUGUI critStatText;
     public Button clickButton;
 
     //XP Bar Stuff
     [Header("XP Bar")]
     public GameObject xpBar;
-    public Text levelText;
+    public TextMeshProUGUI levelText;
 
     //Information Panel Stuff
     [Header("Information Panel Stuff")]
@@ -44,6 +45,8 @@ public class UICollector : MonoBehaviour
     [Header("Fade Text Stuff")]
     public GameObject clickText;
     public GameObject autoClicker;
+    public Sprite coinSprite;
+    public Sprite xpSprite;
 
 
     //Upgrade Stuff

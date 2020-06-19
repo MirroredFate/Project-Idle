@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -57,7 +58,7 @@ public class UIManager : MonoBehaviour
 
         #region BuyAmount Button Update
 
-        Text text = uICollector.amountButton.GetComponentInChildren<Text>();
+        TextMeshProUGUI text = uICollector.amountButton.GetComponentInChildren<TextMeshProUGUI>();
         text.text = uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmountText();
 
         #endregion
@@ -89,7 +90,7 @@ public class UIManager : MonoBehaviour
                 upgradeButton.GetComponent<UpgradeButton>().SetUpgrade(UpgradeManager.instance.GetUpgradeList()[i]);
                 upgradeButton.onClick.AddListener(() => BuyUpgrade(upgradeButton.GetComponent<UpgradeButton>()));
 
-                Text uptext = upgradeButton.GetComponentInChildren<Text>();
+                TextMeshProUGUI uptext = upgradeButton.GetComponentInChildren<TextMeshProUGUI>();
 
                 UpgradeButton upBtn = upgradeButton.GetComponent<UpgradeButton>();
                 Upgrade upgrade = upBtn.GetUpgrade();
@@ -101,7 +102,7 @@ public class UIManager : MonoBehaviour
                     //    upgrade.GetCost().ToString("N0") + " Coins") + "\n" +
                     //    upgrade.GetAmount().ToString();
                     upBtn.SetNameText(upgrade.GetName());
-                    upBtn.SetCostText(string.Format(upgrade.GetCost().ToString("N0") + " Coins"));
+                    upBtn.SetCostText(string.Format(upgrade.GetCost().ToString("N0") + "<sprite=0>"));
                     upBtn.SetValueText(string.Format(upgrade.GetCurrentIncomePercentage().ToString("N2") + "%"));
                     upBtn.SetAmountText(upgrade.GetAmount().ToString());
                 }
@@ -111,7 +112,7 @@ public class UIManager : MonoBehaviour
                     //    upgrade.GetCost().ToString("e3") + " Coins") + "\n" +
                     //    upgrade.GetAmount().ToString();
                     upBtn.SetNameText(upgrade.GetName());
-                    upBtn.SetCostText(string.Format(upgrade.GetCost().ToString("e3") + " Coins"));
+                    upBtn.SetCostText(string.Format(upgrade.GetCost().ToString("e3") + "<sprite=0>"));
                     upBtn.SetValueText(string.Format(upgrade.GetCurrentIncomePercentage().ToString("N2") + "%"));
                     upBtn.SetAmountText(upgrade.GetAmount().ToString());
                 }
@@ -221,7 +222,7 @@ public class UIManager : MonoBehaviour
                         //    upgrade.GetAmount().ToString();
 
                         upBtn.SetNameText(upgrade.GetName());
-                        upBtn.SetCostText(uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmountText() + " " + CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()).ToString("N0") + " Coins");
+                        upBtn.SetCostText(uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmountText() + " " + CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()).ToString("N0") + "<sprite=0>");
                         upBtn.SetValueText(string.Format(upgrade.GetCurrentIncomePercentage().ToString("N2") + "%"));
                         upBtn.SetAmountText(upgrade.GetAmount().ToString());
                     }
@@ -232,7 +233,7 @@ public class UIManager : MonoBehaviour
                         //    upgrade.GetAmount().ToString();
 
                         upBtn.SetNameText(upgrade.GetName());
-                        upBtn.SetCostText(uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmountText() + " " + CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()).ToString("e3") + " Coins");
+                        upBtn.SetCostText(uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmountText() + " " + CalcCost(upgrade, uICollector.amountButton.GetComponent<BuyAmountButtonBehaviour>().GetAmount()).ToString("e3") + "<sprite=0>");
                         upBtn.SetValueText(string.Format(upgrade.GetCurrentIncomePercentage().ToString("N2") + "%"));
                         upBtn.SetAmountText(upgrade.GetAmount().ToString());
                     }
@@ -255,7 +256,7 @@ public class UIManager : MonoBehaviour
                         //    upgrade.GetAmount().ToString();
 
                         upBtn.SetNameText(upgrade.GetName());
-                        upBtn.SetCostText(string.Format(upgrade.GetCost().ToString("N0") + " Coins"));
+                        upBtn.SetCostText(string.Format(upgrade.GetCost().ToString("N0") + "<sprite=0>"));
                         upBtn.SetValueText(string.Format(upgrade.GetCurrentIncomePercentage().ToString("N2") + "%"));
                         upBtn.SetAmountText(upgrade.GetAmount().ToString());
                     }
@@ -266,7 +267,7 @@ public class UIManager : MonoBehaviour
                         //    upgrade.GetAmount().ToString();
 
                         upBtn.SetNameText(upgrade.GetName());
-                        upBtn.SetCostText(string.Format(upgrade.GetCost().ToString("e3") + " Coins"));
+                        upBtn.SetCostText(string.Format(upgrade.GetCost().ToString("e3") + "<sprite=0>"));
                         upBtn.SetValueText(string.Format(upgrade.GetCurrentIncomePercentage().ToString("N2") + "%"));
                         upBtn.SetAmountText(upgrade.GetAmount().ToString());
                     }
@@ -293,13 +294,16 @@ public class UIManager : MonoBehaviour
     {
         GameObject text = Instantiate(uICollector.clickText, new Vector2(position.x, position.y), Quaternion.identity);
         text.transform.SetParent(parent);
-        text.transform.position = new Vector2(position.x + 75, position.y);
-        Text clickText = text.GetComponent<Text>();
+        TextMeshProUGUI clickText = text.GetComponent<TextMeshProUGUI>();
+        
+
 
         GameObject xpText = Instantiate(uICollector.clickText, new Vector2(position.x, position.y), Quaternion.identity);
         xpText.transform.SetParent(parent);
-        xpText.transform.position = new Vector2(position.x - 75, position.y);
-        Text clickXPText = xpText.GetComponent<Text>();
+        TextMeshProUGUI clickXPText = xpText.GetComponent<TextMeshProUGUI>();
+
+        
+
 
         if (autoClick)
         {
@@ -308,12 +312,12 @@ public class UIManager : MonoBehaviour
 
             if(GameManager.Instance.GetCoinsPerSecond() < formatThreshold)
             {
-                clickText.text = "+" + string.Format(GameManager.Instance.GetCoinsPerSecond().ToString("N1") + " Coins");
+                clickText.text = "+" + string.Format(GameManager.Instance.GetCoinsPerSecond().ToString("N1") + "<sprite=0>");
                 UpdateCoinsInfo();
             }
             else
             {
-                clickText.text = "+" + string.Format(GameManager.Instance.GetCoinsPerSecond().ToString("e3") + " Coins");
+                clickText.text = "+" + string.Format(GameManager.Instance.GetCoinsPerSecond().ToString("e3") + "<sprite=0>");
                 UpdateCoinsInfo();
             }
             
@@ -333,12 +337,12 @@ public class UIManager : MonoBehaviour
             {
                 if (GameManager.Instance.GetDidCrit())
                 {
-                    clickText.text = "CRIT!     +" + string.Format(GameManager.Instance.GetCoinsPerClick().ToString("N1") + " Coins");
+                    clickText.text = "CRIT!+" + string.Format(GameManager.Instance.GetCoinsPerClick().ToString("N1") + "<sprite=0>");
                     UpdateCoinsInfo();
                 }
                 else
                 {
-                    clickText.text = "+" + string.Format(GameManager.Instance.GetCoinsPerClick().ToString("N1") + " Coins");
+                    clickText.text = "+" + string.Format(GameManager.Instance.GetCoinsPerClick().ToString("N1") + "<sprite=0>");
                     UpdateCoinsInfo();
                 }
 
@@ -347,12 +351,12 @@ public class UIManager : MonoBehaviour
             {
                 if (GameManager.Instance.GetDidCrit())
                 {
-                    clickText.text = "CRIT!     +" + string.Format(GameManager.Instance.GetCoinsPerClick().ToString("e3") + " Coins");
+                    clickText.text = "CRIT!+" + string.Format(GameManager.Instance.GetCoinsPerClick().ToString("e3") + "<sprite=0>");
                     UpdateCoinsInfo();
                 }
                 else
                 {
-                    clickText.text = "+" + string.Format(GameManager.Instance.GetCoinsPerClick().ToString("e3") + " Coins");
+                    clickText.text = "+" + string.Format(GameManager.Instance.GetCoinsPerClick().ToString("e3") + "<sprite=0>");
                     UpdateCoinsInfo();
                 }
                 
@@ -363,23 +367,26 @@ public class UIManager : MonoBehaviour
             
             if (GameManager.Instance.GetXPPerClick() < formatThreshold)
             {
-                clickXPText.text = string.Format("+" + GameManager.Instance.GetXPPerClick().ToString("N1") + " XP");
+                clickXPText.text = string.Format("+" + GameManager.Instance.GetXPPerClick().ToString("N1") + "<sprite=1>");
                 UpdateCoinsInfo();
             }
             else
             {
-                clickXPText.text = string.Format("+" + GameManager.Instance.GetXPPerClick().ToString("e3") + " XP");
+                clickXPText.text = string.Format("+" + GameManager.Instance.GetXPPerClick().ToString("e3") + "<sprite=1>");
                 UpdateCoinsInfo();
             }
         }
 
-        while(clickText.color.a > 0.0f)
+        text.transform.position = new Vector2(position.x + 20, position.y);
+        xpText.transform.position = new Vector2(position.x + 20, position.y - clickXPText.preferredHeight/2);
+
+        while (clickText.color.a > 0.0f)
         {
             if (GameManager.Instance.GetDidCrit())
             {
-                text.transform.position = new Vector2(position.x + 150, position.y);
+                //text.transform.position = new Vector2(position.x + 150, position.y);
                 clickText.fontSize = 25;
-                text.GetComponent<RectTransform>().sizeDelta = new Vector2(clickText.fontSize * 100, 100);
+                text.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, 50);
                 text.transform.position = new Vector2(text.transform.position.x + 50f * Time.deltaTime, text.transform.position.y - 50f * Time.deltaTime);
                 clickText.color = new Color(255, 255, 0, clickText.color.a - (Time.deltaTime * 0.5f));
                 GameManager.Instance.SetCritBool(false);
@@ -391,7 +398,7 @@ public class UIManager : MonoBehaviour
 
             }
 
-            xpText.transform.position = new Vector2(xpText.transform.position.x - 25f * Time.deltaTime, xpText.transform.position.y + 50f * Time.deltaTime);
+            xpText.transform.position = new Vector2(xpText.transform.position.x + 25f * Time.deltaTime, xpText.transform.position.y + 50f * Time.deltaTime);
             clickXPText.color = new Color(clickXPText.color.r, clickXPText.color.g, clickXPText.color.b, clickXPText.color.a - (Time.deltaTime));
 
             yield return null;
@@ -473,14 +480,14 @@ public class UIManager : MonoBehaviour
         double coins = GameManager.Instance.GetCoins();
         if (GameManager.Instance.GetCoins() < formatThreshold)
         {
-            uICollector.coinStatText.text = coins.ToString("N1") + " Coins";
+            uICollector.coinStatText.text = coins.ToString("N1") + " <sprite=2>";
         }
         else
         {
-            uICollector.coinStatText.text = coins.ToString("e3") + " Coins";
+            uICollector.coinStatText.text = coins.ToString("e3") + " <sprite=2>";
         }
 
-        UICollector.Instance.critStatText.text = GameManager.Instance.GetCritChance().ToString() + "% Crit Chance";
+        UICollector.Instance.critStatText.text = GameManager.Instance.GetCritChance().ToString() + "%" + " <sprite=3>";
 
         
     }
@@ -571,7 +578,9 @@ public class UIManager : MonoBehaviour
         if (GameManager.Instance.GetCurrentXP() >= GameManager.Instance.GetMaxXP())
         {
             GameManager.Instance.LevelUp();
+            UpdateXPInfo();
         }
+
     }
 
     void SaveAndQuit()

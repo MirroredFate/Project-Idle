@@ -14,7 +14,7 @@ public class ToolTip_Coins : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             Tooltip.instance.ShowTooltip(string.Format(GameManager.Instance.GetCoins().ToString("e3") + " Coins"
                 + "\n" + GameManager.Instance.GetGoldCoins().ToString("e3") + " Gold Coins"
-                + "\n" + GameManager.Instance.GetCoinsPerSecond().ToString("e3")), tooltipPostion);
+                + "\n" + GameManager.Instance.GetCoinsPerSecond().ToString("e3") + " Coins per Second"), tooltipPostion);
         }
         else
         {

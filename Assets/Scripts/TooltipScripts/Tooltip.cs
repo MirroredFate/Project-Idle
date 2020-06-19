@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
+using TMPro;
 
 public class Tooltip : MonoBehaviour
 {
     public static Tooltip instance;
 
-    private Text tooltipText;
+    private TextMeshProUGUI tooltipText;
     private RectTransform backgroundRectTransform;
 
     private void Awake()
     {
         instance = this;
         backgroundRectTransform = transform.Find("Background").GetComponent<RectTransform>();
-        tooltipText = transform.Find("Text").GetComponent<Text>();
+        tooltipText = transform.Find("Text").GetComponent<TextMeshProUGUI>();
     }
 
     private void Update()

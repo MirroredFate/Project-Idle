@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using TMPro;
 
 public class UpgradeButton : MonoBehaviour
 {
     Upgrade upgrade;
 
-    [SerializeField] Text nameText;
-    [SerializeField] Text costText;
-    [SerializeField] Text valueText;
-    [SerializeField] Text amountText;
+    [SerializeField] TextMeshProUGUI nameText;
+    [SerializeField] TextMeshProUGUI costText;
+    [SerializeField] TextMeshProUGUI valueText;
+    [SerializeField] TextMeshProUGUI amountText;
 
 
     public Upgrade GetUpgrade()
