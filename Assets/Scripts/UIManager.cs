@@ -200,6 +200,25 @@ public class UIManager : MonoBehaviour
         upgrade.SetCost(upgrade.GetBaseCost() * System.Math.Pow(1.15f, upgrade.GetAmount()));
         UpdateCoinsInfo();
         UpdateUpgradeButtons();
+<<<<<<< Updated upstream
+=======
+        PowerUpManager.Instance.CheckRequirements(upgrade);
+    }
+
+    void BuyPowerUp(PowerUpButton powerUpButton)
+    {
+        PowerUp pUp = powerUpButton.GetPowerUp();
+
+        if(pUp.coinCost <= GameManager.Instance.GetCoins())
+        {
+            GameManager.Instance.RemoveCoins(pUp.coinCost);
+            GameEvents.current.CoinChangeTrigger();
+            powerUpButton.ApplyPowerUp();
+            UpdateUpgradeButtons();
+
+
+        }
+>>>>>>> Stashed changes
     }
 
     void UpdateUpgradeButtons()
@@ -466,6 +485,7 @@ public class UIManager : MonoBehaviour
         InstantiateUpgradeButtons();
         UpdateCoinsInfo();
         UpdateXPInfo();
+        PowerUpManager.Instance.CheckForAllBuildingRequirements();
     }
 
     void UpdateCoinsInfo()

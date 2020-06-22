@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47a2c1e0ea4fb0e42944afa41395ccf7, type: 3}
+  m_Name: CritClicker2
+  m_EditorClassIdentifier: 
+  powerUpName: Critical Upgrade II
+  id: 0
+  type: 3
+  building: 0
+  hasSecondBuilding: 0
+  secondBuilding: 0
+  requiredAmountOfBuilding: 0
+  requiredAmountOfSecondBuilding: 0
+  requiredAmountOfClicks: 0
+  requiredLevel: 0
+  requiredCriticalClicks: 500
+  requiredTotalCoins: 0
+  coinCost: 5000
+  goldCoinCost: 100
+  increaseProductionMultiplier: 0
+  increaseClickMultiplier: 0
+  increaseXPMultiplier: 0
+  increaseCritChanceAmount: 15
+  increaseCritMultiplier: 1.75
+  hasBeenPurchased: 0
+  requirementMet: 0
