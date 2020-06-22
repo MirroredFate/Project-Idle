@@ -90,5 +90,27 @@ public class PowerUpManager : MonoBehaviour
         else return false;
     }
 
+    public void CheckRequirementsForAllBuildings()
+    {
+        foreach (Button buildingButton in UICollector.Instance.upgradeButtonList)
+        {
+            Upgrade building = buildingButton.GetComponent<UpgradeButton>().GetUpgrade();
+
+            foreach (Button pUpButton in UICollector.Instance.powerUpButtons)
+            {
+                PowerUpButton powerUpButton = pUpButton.GetComponent<PowerUpButton>();
+                if (powerUpButton.GetPowerUp().hasBeenPurchased == false)
+                {
+                    if (powerUpButton.GetPowerUp().CheckRequirement(building))
+                    {
+                        powerUpButton.GetPowerUp().requirementMet = true;
+                        powerUpButton.transform.gameObject.SetActive(true);
+                        pUpButton.GetComponent<ToolTip_PowerUp>().SetToolTipPosition(tooltip);
+                    }
+                }
+            }
+        }
+    }
+
 
 }

@@ -75,67 +75,67 @@ public class PowerUp : ScriptableObject
                     case PowerUpBuilding.None:
                         break;
                     case PowerUpBuilding.Farm:
-                        if(_building != null)
+                        if(_building != null && _building.GetID() == 0)
                         {
                             if (_building.GetAmount() >= requiredAmountOfBuilding) return true;
                         }
                         break;
                     case PowerUpBuilding.Inn:
-                        if (_building != null)
+                        if (_building != null && _building.GetID() == 1)
                         {
                             if (_building.GetAmount() >= requiredAmountOfBuilding) return true;
                         }
                         break;
                     case PowerUpBuilding.Blacksmith:
-                        if (_building != null)
+                        if (_building != null && _building.GetID() == 2)
                         {
                             if (_building.GetAmount() >= requiredAmountOfBuilding) return true;
                         }
                         break;
                     case PowerUpBuilding.WarriorBarracks:
-                        if (_building != null)
+                        if (_building != null && _building.GetID() == 3)
                         {
                             if (_building.GetAmount() >= requiredAmountOfBuilding) return true;
                         }
                         break;
                     case PowerUpBuilding.KnightJousts:
-                        if (_building != null)
+                        if (_building != null && _building.GetID() == 4)
                         {
                             if (_building.GetAmount() >= requiredAmountOfBuilding) return true;
                         }
                         break;
                     case PowerUpBuilding.WizardTower:
-                        if (_building != null)
+                        if (_building != null && _building.GetID() == 5)
                         {
                             if (_building.GetAmount() >= requiredAmountOfBuilding) return true;
                         }
                         break;
                     case PowerUpBuilding.Cathedral:
-                        if (_building != null)
+                        if (_building != null && _building.GetID() == 6)
                         {
                             if (_building.GetAmount() >= requiredAmountOfBuilding) return true;
                         }
                         break;
                     case PowerUpBuilding.Citadel:
-                        if (_building != null)
+                        if (_building != null && _building.GetID() == 7)
                         {
                             if (_building.GetAmount() >= requiredAmountOfBuilding) return true;
                         }
                         break;
                     case PowerUpBuilding.RoyalCastle:
-                        if (_building != null)
+                        if (_building != null && _building.GetID() == 8)
                         {
                             if (_building.GetAmount() >= requiredAmountOfBuilding) return true;
                         }
                         break;
                     case PowerUpBuilding.HeavensGate:
-                        if (_building != null)
+                        if (_building != null && _building.GetID() == 9)
                         {
                             if (_building.GetAmount() >= requiredAmountOfBuilding) return true;
                         }
                         break;
                     case PowerUpBuilding.HallOfLegends:
-                        if (_building != null)
+                        if (_building != null && _building.GetID() == 10)
                         {
                             if (_building.GetAmount() >= requiredAmountOfBuilding) return true;
                         }
@@ -156,5 +156,40 @@ public class PowerUp : ScriptableObject
                 break;
         }
         return false;
+    }
+
+    public string GetBuildingName()
+    {
+        switch (building)
+        {
+            case PowerUpBuilding.None:
+                return "None";
+            case PowerUpBuilding.Farm:
+                return "Farms";
+            case PowerUpBuilding.Inn:
+                return "Inns";
+            case PowerUpBuilding.Blacksmith:
+                return "Blacksmiths";
+            case PowerUpBuilding.WarriorBarracks:
+                return "Warrior Barracks";
+            case PowerUpBuilding.KnightJousts:
+                return "Knight Jousts";
+            case PowerUpBuilding.WizardTower:
+                return "Wizard Towers";
+            case PowerUpBuilding.Cathedral:
+                return "Cathedral";
+            case PowerUpBuilding.Citadel:
+                return "Citadels";
+            case PowerUpBuilding.RoyalCastle:
+                return "Royal Castles";
+            case PowerUpBuilding.HeavensGate:
+                return "Heavens Gates";
+            case PowerUpBuilding.HallOfLegends:
+                return "Hall of Legends";
+            case PowerUpBuilding.All:
+                return "All";
+            default:
+                return "Farms";
+        }
     }
 }

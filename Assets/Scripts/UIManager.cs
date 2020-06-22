@@ -452,6 +452,7 @@ public class UIManager : MonoBehaviour
         InstantiatePowerUpButtons();
         GameEvents.current.CoinChangeTrigger();
         UpdateXPInfo();
+        PowerUpManager.Instance.CheckRequirementsForAllBuildings();
     }
 
     void UpdateCoinsInfo()

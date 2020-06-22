@@ -3838,7 +3838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fac638806cdb92143891105fc8e92d02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  admin: 0
+  admin: 1
   level: 1
   maxXP: 10
   baseMaxXP: 0
@@ -3900,6 +3900,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c8c94247c4f6cb148b53da68ac01a206, type: 2}
   - {fileID: 11400000, guid: 621219cd4332ca547b009d0574616435, type: 2}
   - {fileID: 11400000, guid: 0967de33d7fa3824caf2f0496e8f4327, type: 2}
+  - {fileID: 11400000, guid: 2b4bbb40a0f4f8e46a9160a8995f5c9e, type: 2}
   tooltip: {fileID: 1450725417}
 --- !u!1 &1324715078
 GameObject:

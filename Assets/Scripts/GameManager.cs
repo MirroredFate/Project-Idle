@@ -474,7 +474,7 @@ public class GameManager : MonoBehaviour
         clicksDone = data.clicksDone;
         unluckCounter = data.unluckCounter;
 
-        for (int i = 0; i < UpgradeManager.instance.GetUpgradeList().Count - 1; i++)
+        for (int i = 0; i <= UpgradeManager.instance.GetUpgradeList().Count - 1; i++)
         {
             UpgradeManager.instance.GetUpgradeList()[i].SetName(data.upgradeNames[i]);
             UpgradeManager.instance.GetUpgradeList()[i].SetAmount(data.amount[i]);
