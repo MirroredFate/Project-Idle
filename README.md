@@ -2,6 +2,9 @@
 
 Change-Log:
 
+Version 0.0.12
+ - Upgrades!!!
+
 Version 0.0.11b
  - New UI!
  - New Background! (WIP)
