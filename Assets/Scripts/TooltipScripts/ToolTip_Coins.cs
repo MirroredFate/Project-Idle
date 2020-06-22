@@ -10,23 +10,9 @@ public class ToolTip_Coins : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(GameManager.Instance.GetCoins() > 999999)
-        {
-            Tooltip.instance.ShowTooltip(string.Format(GameManager.Instance.GetCoins().ToString("e3") + " Coins"
-                + "\n" + GameManager.Instance.GetGoldCoins().ToString("e3") + " Gold Coins"
-                + "\n" + GameManager.Instance.GetCoinsPerSecond().ToString("e3") + " Coins per Second"), tooltipPostion);
-        }
-        else
-        {
-            Tooltip.instance.ShowTooltip(string.Format(GameManager.Instance.GetCoins().ToString("N1") + " Coins"
-                + "\n" + GameManager.Instance.GetGoldCoins().ToString("N1") + " Gold Coins"
-                + "\n" + GameManager.Instance.GetCoinsPerSecond().ToString("N1") + " Coins per Second"), tooltipPostion);
-        }
-        
-
-
-
-
+        Tooltip.instance.ShowTooltip(string.Format(GameManager.Instance.FormatNumber(GameManager.Instance.GetCoins()) + " Coins"
+                + "\n" + GameManager.Instance.FormatNumber(GameManager.Instance.GetGoldCoins()) + " Gold Coins"
+                + "\n" + GameManager.Instance.FormatNumber(GameManager.Instance.GetCoinsPerSecond()) + " Coins per Second"), tooltipPostion);
     }
 
     public void OnPointerExit(PointerEventData eventData)

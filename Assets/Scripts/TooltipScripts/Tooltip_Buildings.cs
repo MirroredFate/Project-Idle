@@ -14,22 +14,13 @@ public class Tooltip_Buildings : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
         Upgrade uInfo = GetComponent<UpgradeButton>().GetUpgrade();
 
-        if(uInfo.GetCurrentIncome() < 999999)
-        {
-            Tooltip.instance.ShowTooltip(string.Format(uInfo.GetName() + "\n"
-                        + uInfo.GetCoinsPerSecond().ToString("N1") + " CPS" + "\n"
-                        + uInfo.GetNextUpgradeTText()) + "\n"
-                        + "Currently " + uInfo.GetCurrentIncome().ToString("N1") + " CPS", tooltipPostion);
-        }
-        else
-        {
-            Tooltip.instance.ShowTooltip(string.Format(uInfo.GetName() + "\n"
-            + uInfo.GetCoinsPerSecond().ToString("e3") + " CPS" + "\n"
-            + uInfo.GetNextUpgradeTText()) + "\n"
-            + "Currently " + uInfo.GetCurrentIncome().ToString("e3") + " CPS", tooltipPostion);
-        }
 
-        
+        Tooltip.instance.ShowTooltip(string.Format(uInfo.GetName() + "\n"
+                        + GameManager.Instance.FormatNumber(uInfo.GetCoinsPerSecond()) + " CPS" + "\n"
+                        + uInfo.GetNextUpgradeTText()) + "\n"
+                        + "Currently " + GameManager.Instance.FormatNumber(uInfo.GetCurrentIncome()) +  " CPS", tooltipPostion);
+
+
 
     }
 

@@ -56,6 +56,15 @@ public class UICollector : MonoBehaviour
     public List<Button> upgradeButtonList;
     public Button amountButton;
 
+    //PowerUp Stuff
+    [Header("PowerUp Stuff")]
+    public Sprite clickPowerUpImage;
+    public Sprite xpPowerUpImage;
+    public Sprite buildingPowerUpImage;
+    public Sprite critPowerUpImage;
+    public Button powerUpButtonPrefab;
+    public GameObject powerUpParent;
+    public List<Button> powerUpButtons;
 
     private void Awake()
     {

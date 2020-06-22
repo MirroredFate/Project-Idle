@@ -355,9 +355,19 @@ public class GameManager : MonoBehaviour
         xpPerClick += System.Math.Pow(increaseAmount, upgradeTier);
     }
 
-    public void IncreaseCoinsPerClick(double basedOn, float increase_Percent)
+    public void IncreaseXPPerClick(double multiplier)
     {
-        float increaseAmount = 1f + (increase_Percent / 100f);
+        xpPerClick *= multiplier;
+    }
+
+    public void IncreaseCoinsPerClick(double multiplier)
+    {
+        coinsPerClick *= multiplier;
+    }
+
+    public void IncreaseCoinsPerClick(double basedOn, double increase_Percent)
+    {
+        float increaseAmount = 1f + ((float)increase_Percent / 100f);
 
         coinsPerClick += System.Math.Pow(increaseAmount, basedOn);
     }
@@ -377,6 +387,11 @@ public class GameManager : MonoBehaviour
     public void IncreaseCritMultiplier(double amount)
     {
         critMultiplier += amount;
+    }
+
+    public void IncreaseCritMultiplierX(double multiplier)
+    {
+        critMultiplier *= multiplier;
     }
 
     public void SetCritBool(bool crit)
@@ -405,7 +420,19 @@ public class GameManager : MonoBehaviour
 
     }
 
-
+    public string FormatNumber(double number)
+    {
+        if (number > 999999)
+        {
+            var exponent = System.Math.Floor(System.Math.Log10(System.Math.Abs(number)));
+            var mantissa = number / System.Math.Pow(10, exponent);
+            return mantissa.ToString("F2") + "e" + exponent;
+        }
+        else
+        {
+            return number.ToString("N1");
+        }
+    }
 
 
 
@@ -458,6 +485,17 @@ public class GameManager : MonoBehaviour
             UpgradeManager.instance.GetUpgradeList()[i].SetTier(data.tier[i]);
             UpgradeManager.instance.GetUpgradeList()[i].SetActive(data.active[i]);
         }
+
+        if(data.powerUpNameList.Count > 0)
+        {
+            Debug.Log("Loading Bought Power Ups...Count:" + data.powerUpNameList.Count);
+            PowerUpManager.Instance.GetBoughtPowerUpNames().Clear();
+            for (int i = 0; i < data.powerUpNameList.Count; i++)
+            {
+                PowerUpManager.Instance.AddToBoughtPowerUps(data.powerUpNameList[i]);
+            }
+        }
+        
 
 
     }

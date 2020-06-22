@@ -50,6 +50,9 @@ public class PlayerData
     public double[] tier;
     public bool[] active;
 
+    //Data for each PowerUp
+    public List<string> powerUpNameList;
+
     public PlayerData()
     {
         level = GameManager.Instance.GetLevel();
@@ -79,26 +82,44 @@ public class PlayerData
         criticalClicksDone = GameManager.Instance.GetCriticalClicksDone();
         unluckCounter = GameManager.Instance.GetUnluckCounter();
 
-        upgradeNames = new string[10];
-        amount = new double[10];
-        baseCost = new double[10];
-        currentCost = new double[10];
-        upgradeCoinsPerClick = new double[10];
-        upgradeCoinsPerSecond = new double[10];
-        currentIncome = new double[10];
-        tier = new double[10];
-        active = new bool[10];
+        upgradeNames = new string[11];
+        amount = new double[11];
+        baseCost = new double[11];
+        currentCost = new double[11];
+        upgradeCoinsPerClick = new double[11];
+        upgradeCoinsPerSecond = new double[11];
+        currentIncome = new double[11];
+        tier = new double[11];
+        active = new bool[11];
 
-        for (int i = 0; i < UpgradeManager.instance.GetUpgradeList().Count-1; i++)
+        if(UpgradeManager.instance.GetUpgradeList().Count > 0)
         {
-            upgradeNames[i] = UpgradeManager.instance.GetUpgradeList()[i].GetName();
-            amount[i] = UpgradeManager.instance.GetUpgradeList()[i].GetAmount();
-            currentCost[i] = UpgradeManager.instance.GetUpgradeList()[i].GetCost();
-            upgradeCoinsPerClick[i] = UpgradeManager.instance.GetUpgradeList()[i].GetCoinsPerClick();
-            upgradeCoinsPerSecond[i] = UpgradeManager.instance.GetUpgradeList()[i].GetCoinsPerSecond();
-            currentIncome[i] = UpgradeManager.instance.GetUpgradeList()[i].GetCurrentIncome();
-            tier[i] = UpgradeManager.instance.GetUpgradeList()[i].GetTier();
-            active[i] = UpgradeManager.instance.GetUpgradeList()[i].GetActive();
+            for (int i = 0; i <= UpgradeManager.instance.GetUpgradeList().Count - 1; i++)
+            {
+                upgradeNames[i] = UpgradeManager.instance.GetUpgradeList()[i].GetName();
+                amount[i] = UpgradeManager.instance.GetUpgradeList()[i].GetAmount();
+                currentCost[i] = UpgradeManager.instance.GetUpgradeList()[i].GetCost();
+                upgradeCoinsPerClick[i] = UpgradeManager.instance.GetUpgradeList()[i].GetCoinsPerClick();
+                upgradeCoinsPerSecond[i] = UpgradeManager.instance.GetUpgradeList()[i].GetCoinsPerSecond();
+                currentIncome[i] = UpgradeManager.instance.GetUpgradeList()[i].GetCurrentIncome();
+                tier[i] = UpgradeManager.instance.GetUpgradeList()[i].GetTier();
+                active[i] = UpgradeManager.instance.GetUpgradeList()[i].GetActive();
+            }
         }
+
+
+        powerUpNameList = new List<string>();
+
+        Debug.Log("Saving Bought Power Ups.... Count:" + PowerUpManager.Instance.GetBoughtPowerUpNames().Count);
+        if(PowerUpManager.Instance.GetBoughtPowerUpNames().Count > 0)
+        {
+            for (int i = 0; i <= PowerUpManager.Instance.GetBoughtPowerUpNames().Count-1; i++)
+            {
+                powerUpNameList.Add(PowerUpManager.Instance.GetBoughtPowerUpNames()[i]);
+            }
+        }
+
+        
+
     }
 }

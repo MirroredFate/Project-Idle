@@ -21,9 +21,11 @@ public class ToolTip_XpBar : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             + "\n" + GameManager.Instance.GetCurrentXP().ToString("N1") + " / " + GameManager.Instance.GetMaxXP().ToString("N1") + " XP"
             + "\n" + GameManager.Instance.GetXPPercentage().ToString("N2") + "%"), tooltipPostion);
         }
-        
 
 
+        Tooltip.instance.ShowTooltip(string.Format("Level " + GameManager.Instance.FormatNumber(GameManager.Instance.GetLevel())
+            + "\n" + GameManager.Instance.FormatNumber(GameManager.Instance.GetCurrentXP()) + " / " + GameManager.Instance.FormatNumber(GameManager.Instance.GetMaxXP()) + " XP"
+            + "\n" + GameManager.Instance.FormatNumber(GameManager.Instance.GetXPPercentage()) + "%"), tooltipPostion);
 
 
     }

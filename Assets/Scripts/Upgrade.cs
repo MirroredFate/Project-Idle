@@ -201,4 +201,10 @@ public class Upgrade
         }
     }
 
+    public void IncreaseIncome(double multiplier)
+    {
+        coinsPerSecond *= multiplier;
+        GameManager.Instance.AddToTotalIncome(id, currentIncome * multiplier);
+    }
+
 }
